@@ -18,5 +18,5 @@ typedef NS_ENUM(NSInteger, MNTMentionHeaderActions)
 };
 
 @interface MentionPullToReactView : MNTPullToReactView
-
+@property (nonatomic) NSInteger indexOfSelectedAction;
 @end

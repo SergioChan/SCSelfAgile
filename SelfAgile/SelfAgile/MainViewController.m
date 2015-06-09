@@ -16,7 +16,7 @@
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) MNTPullToReactControl *reactControl;
 @property(nonatomic,strong) NSMutableArray *data;
-
+@property(nonatomic) NSInteger selectedIndex;
 @end
 
 @implementation MainViewController
@@ -35,6 +35,7 @@
     self.reactControl.contentView = [[MentionPullToReactView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
     [self.reactControl addTarget:self action:@selector(reaction:) forControlEvents:UIControlEventValueChanged];
     self.tableView.reactControl = self.reactControl;
+    self.selectedIndex = 0;
 }
 
 - (void)loadView
@@ -78,9 +79,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch(self.reactControl.action)
+    switch(self.selectedIndex)
     {
-        case 1:
+        case 0:
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTableViewCell"];
             if(!cell)
@@ -92,7 +93,7 @@
             return cell;
         }
             break;
-        case 2:
+        case 1:
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoingTableViewCell"];
             if(!cell)
@@ -104,7 +105,7 @@
             return cell;
         }
             break;
-        case 3:
+        case 2:
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoneTableViewCell"];
             if(!cell)
@@ -137,10 +138,8 @@
     MNTPullToReactControl *reactControl = (MNTPullToReactControl *)sender;
     NSLog(@"Doing action %ld", (long)reactControl.action);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-//        [self.tableView reloadData];
-//        //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-//        usleep(1100 * 1000);
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.selectedIndex = reactControl.action - 1;
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
             usleep(1100 * 1000);
             [reactControl endAction:reactControl.action];

@@ -31,7 +31,6 @@ static BOOL hasAttributedString = NO;
 @interface MentionPullToReactView ()
 {
     NSArray     *_actions;
-    NSInteger   _indexOfSelectedAction;
     NSMutableArray  *_imageViews;
     UILabel     *_label;
 }

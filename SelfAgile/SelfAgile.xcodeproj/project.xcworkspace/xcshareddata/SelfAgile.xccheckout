@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>20B12EBC-4616-408E-90C4-16B30165297C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</key>
+		<string>https://github.com/SergioChan/SelfAgile.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SelfAgile/SelfAgile.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/SergioChan/SelfAgile.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SelfAgile</string>
+		</dict>
+	</array>
+</dict>
+</plist>

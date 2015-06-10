@@ -46,6 +46,15 @@
 		22C972A41B2712E900B568FD /* SAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A31B2712E900B568FD /* SAEvent.m */; };
 		22C972A71B27130500B568FD /* SADoingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A61B27130500B568FD /* SADoingTableViewCell.m */; };
 		22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A91B27131000B568FD /* SADoneTableViewCell.m */; };
+		22F3F9821B284B13004E767E /* DictionaryJSONStringConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9811B284B13004E767E /* DictionaryJSONStringConvertor.m */; };
+		22F3F9941B284B82004E767E /* SBJson4Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9871B284B82004E767E /* SBJson4Parser.m */; };
+		22F3F9951B284B82004E767E /* SBJson4StreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9891B284B82004E767E /* SBJson4StreamParser.m */; };
+		22F3F9961B284B82004E767E /* SBJson4StreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F98B1B284B82004E767E /* SBJson4StreamParserState.m */; };
+		22F3F9971B284B82004E767E /* SBJson4StreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F98D1B284B82004E767E /* SBJson4StreamTokeniser.m */; };
+		22F3F9981B284B82004E767E /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F98F1B284B82004E767E /* SBJson4StreamWriter.m */; };
+		22F3F9991B284B82004E767E /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9911B284B82004E767E /* SBJson4StreamWriterState.m */; };
+		22F3F99A1B284B82004E767E /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9931B284B82004E767E /* SBJson4Writer.m */; };
+		22F3F99C1B286551004E767E /* SelfAgile.db in Resources */ = {isa = PBXBuildFile; fileRef = 22F3F99B1B286551004E767E /* SelfAgile.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +133,24 @@
 		22C972A61B27130500B568FD /* SADoingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoingTableViewCell.m; sourceTree = "<group>"; };
 		22C972A81B27131000B568FD /* SADoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADoneTableViewCell.h; sourceTree = "<group>"; };
 		22C972A91B27131000B568FD /* SADoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoneTableViewCell.m; sourceTree = "<group>"; };
+		22F3F9801B284B13004E767E /* DictionaryJSONStringConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryJSONStringConvertor.h; sourceTree = "<group>"; };
+		22F3F9811B284B13004E767E /* DictionaryJSONStringConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryJSONStringConvertor.m; sourceTree = "<group>"; };
+		22F3F9851B284B82004E767E /* SBJson4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4.h; sourceTree = "<group>"; };
+		22F3F9861B284B82004E767E /* SBJson4Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Parser.h; sourceTree = "<group>"; };
+		22F3F9871B284B82004E767E /* SBJson4Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Parser.m; sourceTree = "<group>"; };
+		22F3F9881B284B82004E767E /* SBJson4StreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParser.h; sourceTree = "<group>"; };
+		22F3F9891B284B82004E767E /* SBJson4StreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParser.m; sourceTree = "<group>"; };
+		22F3F98A1B284B82004E767E /* SBJson4StreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParserState.h; sourceTree = "<group>"; };
+		22F3F98B1B284B82004E767E /* SBJson4StreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParserState.m; sourceTree = "<group>"; };
+		22F3F98C1B284B82004E767E /* SBJson4StreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamTokeniser.h; sourceTree = "<group>"; };
+		22F3F98D1B284B82004E767E /* SBJson4StreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamTokeniser.m; sourceTree = "<group>"; };
+		22F3F98E1B284B82004E767E /* SBJson4StreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriter.h; sourceTree = "<group>"; };
+		22F3F98F1B284B82004E767E /* SBJson4StreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriter.m; sourceTree = "<group>"; };
+		22F3F9901B284B82004E767E /* SBJson4StreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriterState.h; sourceTree = "<group>"; };
+		22F3F9911B284B82004E767E /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
+		22F3F9921B284B82004E767E /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
+		22F3F9931B284B82004E767E /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
+		22F3F99B1B286551004E767E /* SelfAgile.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = SelfAgile.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +216,7 @@
 		22C971F61B27022A00B568FD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				22F3F99B1B286551004E767E /* SelfAgile.db */,
 				22C971F71B27022A00B568FD /* Info.plist */,
 				22C971F81B27022A00B568FD /* main.m */,
 				22C9722B1B2706B300B568FD /* PrefixHeader.pch */,
@@ -225,6 +253,8 @@
 		22C972201B2705DA00B568FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				22F3F9801B284B13004E767E /* DictionaryJSONStringConvertor.h */,
+				22F3F9811B284B13004E767E /* DictionaryJSONStringConvertor.m */,
 				22C972981B270EE400B568FD /* UITableView+Helper.h */,
 				22C972991B270EE400B568FD /* UITableView+Helper.m */,
 				22C972241B2705ED00B568FD /* DBExecutingQueue.h */,
@@ -251,23 +281,8 @@
 		22C972381B2708E800B568FD /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				22C972571B270AC500B568FD /* MNTFakeGestureRecognizer.h */,
-				22C972581B270AC500B568FD /* MNTFakeGestureRecognizer.m */,
-				22C972591B270AC500B568FD /* MNTPullToReactControl.h */,
-				22C9725A1B270AC500B568FD /* MNTPullToReactControl.m */,
-				22C9725B1B270AC500B568FD /* MNTPullToReactControl+Private.h */,
-				22C9725C1B270AC500B568FD /* MNTPullToReactControl+Utils.h */,
-				22C9725D1B270AC500B568FD /* MNTPullToReactControl+Utils.m */,
-				22C9725E1B270AC500B568FD /* MNTPullToReactDefaultView.h */,
-				22C9725F1B270AC500B568FD /* MNTPullToReactDefaultView.m */,
-				22C972601B270AC500B568FD /* MNTPullToReactView.h */,
-				22C972611B270AC500B568FD /* MNTPullToReactView.m */,
-				22C972621B270AC500B568FD /* PullToReact-Prefix.pch */,
-				22C972631B270AC500B568FD /* PullToReact.h */,
-				22C972641B270AC500B568FD /* UITableView+MNTPullToReact.h */,
-				22C972651B270AC500B568FD /* UITableView+MNTPullToReact.m */,
-				22C972661B270AC500B568FD /* UIWebView+MNTPullToReact.h */,
-				22C972671B270AC500B568FD /* UIWebView+MNTPullToReact.m */,
+				22F3F9841B284B75004E767E /* SBJson */,
+				22F3F9831B284B5D004E767E /* PullToReact */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -313,6 +328,52 @@
 				22C972A31B2712E900B568FD /* SAEvent.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		22F3F9831B284B5D004E767E /* PullToReact */ = {
+			isa = PBXGroup;
+			children = (
+				22C972571B270AC500B568FD /* MNTFakeGestureRecognizer.h */,
+				22C972581B270AC500B568FD /* MNTFakeGestureRecognizer.m */,
+				22C972591B270AC500B568FD /* MNTPullToReactControl.h */,
+				22C9725A1B270AC500B568FD /* MNTPullToReactControl.m */,
+				22C9725B1B270AC500B568FD /* MNTPullToReactControl+Private.h */,
+				22C9725C1B270AC500B568FD /* MNTPullToReactControl+Utils.h */,
+				22C9725D1B270AC500B568FD /* MNTPullToReactControl+Utils.m */,
+				22C9725E1B270AC500B568FD /* MNTPullToReactDefaultView.h */,
+				22C9725F1B270AC500B568FD /* MNTPullToReactDefaultView.m */,
+				22C972601B270AC500B568FD /* MNTPullToReactView.h */,
+				22C972611B270AC500B568FD /* MNTPullToReactView.m */,
+				22C972621B270AC500B568FD /* PullToReact-Prefix.pch */,
+				22C972631B270AC500B568FD /* PullToReact.h */,
+				22C972641B270AC500B568FD /* UITableView+MNTPullToReact.h */,
+				22C972651B270AC500B568FD /* UITableView+MNTPullToReact.m */,
+				22C972661B270AC500B568FD /* UIWebView+MNTPullToReact.h */,
+				22C972671B270AC500B568FD /* UIWebView+MNTPullToReact.m */,
+			);
+			name = PullToReact;
+			sourceTree = "<group>";
+		};
+		22F3F9841B284B75004E767E /* SBJson */ = {
+			isa = PBXGroup;
+			children = (
+				22F3F9851B284B82004E767E /* SBJson4.h */,
+				22F3F9861B284B82004E767E /* SBJson4Parser.h */,
+				22F3F9871B284B82004E767E /* SBJson4Parser.m */,
+				22F3F9881B284B82004E767E /* SBJson4StreamParser.h */,
+				22F3F9891B284B82004E767E /* SBJson4StreamParser.m */,
+				22F3F98A1B284B82004E767E /* SBJson4StreamParserState.h */,
+				22F3F98B1B284B82004E767E /* SBJson4StreamParserState.m */,
+				22F3F98C1B284B82004E767E /* SBJson4StreamTokeniser.h */,
+				22F3F98D1B284B82004E767E /* SBJson4StreamTokeniser.m */,
+				22F3F98E1B284B82004E767E /* SBJson4StreamWriter.h */,
+				22F3F98F1B284B82004E767E /* SBJson4StreamWriter.m */,
+				22F3F9901B284B82004E767E /* SBJson4StreamWriterState.h */,
+				22F3F9911B284B82004E767E /* SBJson4StreamWriterState.m */,
+				22F3F9921B284B82004E767E /* SBJson4Writer.h */,
+				22F3F9931B284B82004E767E /* SBJson4Writer.m */,
+			);
+			name = SBJson;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +468,7 @@
 				22C972861B270C0C00B568FD /* pulldown-archive.png in Resources */,
 				22C972841B270C0C00B568FD /* pulldown-archive-hled.png in Resources */,
 				22C972971B270C0C00B568FD /* pulldown-trash@2x.png in Resources */,
+				22F3F99C1B286551004E767E /* SelfAgile.db in Resources */,
 				22C972951B270C0C00B568FD /* pulldown-trash-hled@2x.png in Resources */,
 				22C972871B270C0C00B568FD /* pulldown-archive@2x.png in Resources */,
 				22C972041B27022A00B568FD /* Images.xcassets in Resources */,
@@ -427,16 +489,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F3F9951B284B82004E767E /* SBJson4StreamParser.m in Sources */,
 				22C971FC1B27022A00B568FD /* AppDelegate.m in Sources */,
 				22C972691B270AC500B568FD /* MNTPullToReactControl.m in Sources */,
 				22C972681B270AC500B568FD /* MNTFakeGestureRecognizer.m in Sources */,
+				22F3F9961B284B82004E767E /* SBJson4StreamParserState.m in Sources */,
 				22C9729D1B27115200B568FD /* UIImage+Helper.m in Sources */,
 				22C9723E1B27094F00B568FD /* MentionPullToReactView.m in Sources */,
 				22C972A41B2712E900B568FD /* SAEvent.m in Sources */,
+				22F3F9941B284B82004E767E /* SBJson4Parser.m in Sources */,
 				22C9726B1B270AC500B568FD /* MNTPullToReactDefaultView.m in Sources */,
+				22F3F9821B284B13004E767E /* DictionaryJSONStringConvertor.m in Sources */,
 				22C972371B27084D00B568FD /* MainViewController.m in Sources */,
 				22C9726E1B270AC500B568FD /* UIWebView+MNTPullToReact.m in Sources */,
+				22F3F99A1B284B82004E767E /* SBJson4Writer.m in Sources */,
 				22C9726C1B270AC500B568FD /* MNTPullToReactView.m in Sources */,
+				22F3F9971B284B82004E767E /* SBJson4StreamTokeniser.m in Sources */,
 				22C971F91B27022A00B568FD /* main.m in Sources */,
 				22C972A71B27130500B568FD /* SADoingTableViewCell.m in Sources */,
 				22C9726A1B270AC500B568FD /* MNTPullToReactControl+Utils.m in Sources */,
@@ -444,6 +512,8 @@
 				22C972231B2705E600B568FD /* DBManager.m in Sources */,
 				22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */,
 				22C972A01B27127900B568FD /* SAToDoTableViewCell.m in Sources */,
+				22F3F9991B284B82004E767E /* SBJson4StreamWriterState.m in Sources */,
+				22F3F9981B284B82004E767E /* SBJson4StreamWriter.m in Sources */,
 				22C972261B2705ED00B568FD /* DBExecutingQueue.m in Sources */,
 				22C9729A1B270EE400B568FD /* UITableView+Helper.m in Sources */,
 			);
@@ -662,6 +732,7 @@
 				22C972181B27022A00B568FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22C972191B27022A00B568FD /* Build configuration list for PBXNativeTarget "SelfAgileTests" */ = {
 			isa = XCConfigurationList;
@@ -670,6 +741,7 @@
 				22C9721B1B27022A00B568FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

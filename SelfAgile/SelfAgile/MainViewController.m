@@ -11,6 +11,7 @@
 #import "MentionPullToReactView.h"
 #import "UITableView+Helper.h"
 #import "UIImage+Helper.h"
+#import "SAEvent.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
@@ -36,6 +37,10 @@
     [self.reactControl addTarget:self action:@selector(reaction:) forControlEvents:UIControlEventValueChanged];
     self.tableView.reactControl = self.reactControl;
     self.selectedIndex = 0;
+    UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewEvent)];
+    add.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = add;
+    //[SAEvent createEvents:[NSDictionary dictionaryWithObjects:@[@"Hello world!",@"This is my first event",[NSNumber numberWithInt:1],[NSNumber numberWithInt:0]] forKeys:@[@"title",@"content",@"level",@"sprintNum"]]];
 }
 
 - (void)loadView
@@ -60,6 +65,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    // Hide the shadow of navBar
     for (UIView *view in [[[self.navigationController.navigationBar subviews] objectAtIndex:0] subviews]) {
         if ([view isKindOfClass:[UIImageView class]]) {
             view.hidden = YES;
@@ -153,11 +160,17 @@
     [self.reactControl beginAction:action];
     NSLog(@"Do action %ld", (long)action);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        usleep(1100 * 1000);
+        usleep(10 * 1000);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.reactControl endAction:action];
         });
     });
+}
+
+#pragma mark - Create new event
+- (void)addNewEvent
+{
+    NSLog(@"hey");
 }
 /*
 #pragma mark - Navigation

@@ -171,6 +171,7 @@
 - (void)addNewEvent
 {
     NSLog(@"hey");
+    [self performSegueWithIdentifier:@"CreateNewEvent" sender:self];
 }
 /*
 #pragma mark - Navigation

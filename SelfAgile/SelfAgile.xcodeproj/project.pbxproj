@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221D298A1B29C17F005E75CE /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221D29891B29C17F005E75CE /* CreateViewController.m */; };
 		22C971F91B27022A00B568FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971F81B27022A00B568FD /* main.m */; };
 		22C971FC1B27022A00B568FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971FB1B27022A00B568FD /* AppDelegate.m */; };
 		22C972021B27022A00B568FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C972001B27022A00B568FD /* Main.storyboard */; };
@@ -68,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221D29881B29C17F005E75CE /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		221D29891B29C17F005E75CE /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		22C971F31B27022A00B568FD /* SelfAgile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfAgile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C971F71B27022A00B568FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C971F81B27022A00B568FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 			children = (
 				22C972351B27084D00B568FD /* MainViewController.h */,
 				22C972361B27084D00B568FD /* MainViewController.m */,
+				221D29881B29C17F005E75CE /* CreateViewController.h */,
+				221D29891B29C17F005E75CE /* CreateViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */,
 				22C972A01B27127900B568FD /* SAToDoTableViewCell.m in Sources */,
 				22F3F9991B284B82004E767E /* SBJson4StreamWriterState.m in Sources */,
+				221D298A1B29C17F005E75CE /* CreateViewController.m in Sources */,
 				22F3F9981B284B82004E767E /* SBJson4StreamWriter.m in Sources */,
 				22C972261B2705ED00B568FD /* DBExecutingQueue.m in Sources */,
 				22C9729A1B270EE400B568FD /* UITableView+Helper.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "MentionPullToReactView.h"
+#import "UIColor+Custom.h"
 
 @interface FakeMention : NSObject
 @property(nonatomic) NSNumber *favorite;
@@ -62,7 +63,7 @@ static BOOL hasAttributedString = NO;
     self = [super initWithFrame:constrainedFrame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor colorWithRed:220/255. green:230/255. blue:237/255. alpha:1.0];
+        self.backgroundColor = [UIColor customColorDefault];
         
         _actions = @[@{@"icon": favorite, @"hledIcon": hledFavorite, @"textDo": @"To do", @"textUndo": @"To do"},
                      @{@"icon": archive, @"hledIcon": hledArchive, @"textDo": @"Doing", @"textUndo": @"Doing"},
@@ -115,7 +116,7 @@ static BOOL hasAttributedString = NO;
     CGContextSaveGState(ctx);
     {
         // Draw whatever you like
-        CGColorRef bgColor = [UIColor colorWithRed:220/255. green:230/255. blue:237/255. alpha:1.0].CGColor;
+        CGColorRef bgColor = [UIColor customColorDefault].CGColor;
         CGContextSetFillColorWithColor(ctx, bgColor);
         CGContextFillRect(ctx, self.bounds);
         
@@ -142,7 +143,7 @@ static BOOL hasAttributedString = NO;
     [descriptionLabel setMinimumScaleFactor:0.8];
     [descriptionLabel setNumberOfLines:1];
     [descriptionLabel setAdjustsFontSizeToFitWidth:YES];
-    [descriptionLabel setBackgroundColor:[UIColor colorWithRed:180/255. green:202/255. blue:217/255. alpha:1.0]];
+    [descriptionLabel setBackgroundColor:[UIColor customColorDefault]];
     return descriptionLabel;
 }
 

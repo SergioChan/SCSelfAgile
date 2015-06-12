@@ -44,21 +44,57 @@ static DBManager *dbManager;
     }
 }
 
-+ (id)getToDoEventList:(NSInteger)sprintNum
++ (NSMutableArray *)getToDoEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    return nil;
+    NSString *query = @"select * from Events where sprintNum = %ld and state = 0";
+    NSArray *result = [dbManager loadDataFromDB:query];
+    NSMutableArray *eventsList = [NSMutableArray array];
+    if (result.count > 0) {
+        for (NSDictionary *event in result) {
+            [eventsList addObject:event];
+        }
+        return eventsList;
+    }
+    else
+    {
+        return eventsList;
+    }
 }
 
-+ (id)getDoingEventList:(NSInteger)sprintNum
++ (NSMutableArray *)getDoingEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    return nil;
+    NSString *query = @"select * from Events where sprintNum = %ld and state = 1";
+    NSArray *result = [dbManager loadDataFromDB:query];
+    NSMutableArray *eventsList = [NSMutableArray array];
+    if (result.count > 0) {
+        for (NSDictionary *event in result) {
+            [eventsList addObject:event];
+        }
+        return eventsList;
+    }
+    else
+    {
+        return eventsList;
+    }
 }
 
-+ (id)getDoneEventList:(NSInteger)sprintNum
++ (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    return nil;
+    NSString *query = @"select * from Events where sprintNum = %ld and state = 2";
+    NSArray *result = [dbManager loadDataFromDB:query];
+    NSMutableArray *eventsList = [NSMutableArray array];
+    if (result.count > 0) {
+        for (NSDictionary *event in result) {
+            [eventsList addObject:event];
+        }
+        return eventsList;
+    }
+    else
+    {
+        return eventsList;
+    }
 }
 @end

@@ -32,7 +32,7 @@
  *
  *  @return event list
  */
-+ (id)getToDoEventList:(NSInteger)sprintNum;
++ (NSMutableArray *)getToDoEventList:(NSInteger)sprintNum;
 
 /**
  *  get doing event list
@@ -41,7 +41,7 @@
  *
  *  @return event list
  */
-+ (id)getDoingEventList:(NSInteger)sprintNum;
++ (NSMutableArray *)getDoingEventList:(NSInteger)sprintNum;
 
 /**
  *  get done event list
@@ -50,5 +50,5 @@
  *
  *  @return event list
  */
-+ (id)getDoneEventList:(NSInteger)sprintNum;
++ (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum;
 @end

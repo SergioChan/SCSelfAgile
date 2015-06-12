@@ -12,6 +12,12 @@
 #import "UITableView+Helper.h"
 #import "UIImage+Helper.h"
 #import "SAEvent.h"
+#import "UIColor+Custom.h"
+#import "UIViewExt.h"
+
+#import "SADoingTableViewCell.h"
+#import "SADoneTableViewCell.h"
+#import "SAToDoTableViewCell.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
@@ -28,8 +34,10 @@
     self.titleLabel.text = @"S#1:My First Sprint";
     _data = [NSMutableArray arrayWithArray:@[@"To do", @"Doing", @"Done"]];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:220/255. green:230/255. blue:237/255. alpha:1.0];
+    self.view.backgroundColor = [UIColor customColorDefault];
     [self.tableView hideExtraCellLine];
+    self.tableView.backgroundColor = [UIColor customColorDefault];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.reactControl = [[MNTPullToReactControl alloc] initWithNumberOfActions:MentionPullToReactViewNumberOfAction];
     self.reactControl.threshold = 90;
@@ -64,7 +72,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setTintColor:[UIColor customColorDefault]];
     
     // Hide the shadow of navBar
     for (UIView *view in [[[self.navigationController.navigationBar subviews] objectAtIndex:0] subviews]) {
@@ -88,48 +97,46 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch(self.selectedIndex)
     {
+        case -1:
         case 0:
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTableViewCell"];
+            SAToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"todoTableViewCell"];
             if(!cell)
             {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainTableViewCell"];
+                cell = [[SAToDoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"todoTableViewCell"];
             }
             
-            cell.textLabel.text = @"test1";
             return cell;
         }
             break;
         case 1:
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoingTableViewCell"];
+            SADoingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoingTableViewCell"];
             if(!cell)
             {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoingTableViewCell"];
+                cell = [[SADoingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoingTableViewCell"];
             }
             
-            cell.textLabel.text = @"test2";
             return cell;
         }
             break;
         case 2:
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoneTableViewCell"];
+            SADoneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoneTableViewCell"];
             if(!cell)
             {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoneTableViewCell"];
+                cell = [[SADoneTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoneTableViewCell"];
             }
             
-            cell.textLabel.text = @"test3";
             return cell;
         }
             break;
         default:
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTableViewCell"];
+            SAToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"todoTableViewCell"];
             if(!cell)
             {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainTableViewCell"];
+                cell = [[SAToDoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"todoTableViewCell"];
             }
             
             cell.textLabel.text = @"test1";
@@ -143,12 +150,17 @@
 - (void)reaction:(id)sender
 {
     MNTPullToReactControl *reactControl = (MNTPullToReactControl *)sender;
+    if(reactControl.action < 1 || reactControl.action > 3)
+    {
+        return;
+    }
+    
     NSLog(@"Doing action %ld", (long)reactControl.action);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             self.selectedIndex = reactControl.action - 1;
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
-            usleep(1100 * 1000);
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+//            usleep(1100 * 1000);
             [reactControl endAction:reactControl.action];
         });
     });

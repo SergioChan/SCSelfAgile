@@ -7,6 +7,8 @@
 //
 
 #import "SADoingTableViewCell.h"
+#import "UIViewExt.h"
+#import "UIColor+Custom.h"
 
 @implementation SADoingTableViewCell
 
@@ -19,7 +21,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self  initSubViews];
     }
@@ -28,7 +30,9 @@
 
 - (void) initSubViews
 {
-    
+    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f,ScreenWidth , 2.0f)];
+    topLine.backgroundColor = [UIColor customColorDefault];
+    [self.contentView addSubview:topLine];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

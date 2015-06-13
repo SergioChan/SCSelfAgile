@@ -18,6 +18,7 @@
 #define contentTag 10003
 #define levelTag 10004
 
+#define ScreenBottomPadding 150.0f
 @interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate>
 @property (nonatomic,strong) UITextField *dueDateInputView;
 @property (nonatomic,strong) UITextField *titleInputView;
@@ -53,6 +54,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:YES];
     
+    
     [self.navigationController.navigationBar setTintColor:[UIColor customColorDefault]];
     // Hide the shadow of navBar
     for (UIView *view in [[[self.navigationController.navigationBar subviews] objectAtIndex:0] subviews]) {
@@ -74,7 +76,7 @@
     if (indexPath.row <=1)
         return 60.0f;
     else if(indexPath.row == 2)
-        return 300.0f;
+        return (ScreenHeight - 200.0f - ScreenBottomPadding);
     else if(indexPath.row == 3)
         return 60.0f;
     else if(indexPath.row == 4)
@@ -118,7 +120,7 @@
                 _dueDateInputView.tag = duedateTag;
                 _dueDateInputView.delegate = self;
                 _dueDateInputView.borderStyle = UITextBorderStyleNone;
-                _dueDateInputView.placeholder = @"先选择您这项任务的最后期限日期";
+                _dueDateInputView.placeholder = @"选择最后期限日期";
                 _dueDateInputView.textColor = [UIColor lightGrayColor];
                 _dueDateInputView.font = [UIFont systemFontOfSize:15.0f];
                 
@@ -150,7 +152,7 @@
                 _titleInputView.tag = titleTag;
                 _titleInputView.delegate = self;
                 _titleInputView.borderStyle = UITextBorderStyleNone;
-                _titleInputView.placeholder = @"取个雄心壮志的标题,别超过15个字哦";
+                _titleInputView.placeholder = @"取个雄心壮志的标题";
                 _titleInputView.textColor = [UIColor lightGrayColor];
                 _titleInputView.font = [UIFont systemFontOfSize:15.0f];
                 
@@ -178,7 +180,7 @@
                 titleLabel.textColor = [UIColor customColorDefault];
                 titleLabel.font = [UIFont systemFontOfSize:15.0f];
                 
-                self.contentInputView = [[UITextView alloc]initWithFrame:CGRectMake(titleLabel.right + 10.0f, titleLabel.top, ScreenWidth - titleLabel.right - 25.0f, 278.0f)];
+                self.contentInputView = [[UITextView alloc]initWithFrame:CGRectMake(titleLabel.right + 10.0f, titleLabel.top, ScreenWidth - titleLabel.right - 25.0f, ScreenHeight - 200.0f - ScreenBottomPadding -2.0f - 20.0f)];
                 _contentInputView.tag = contentTag;
                 _contentInputView.delegate = self;
                 _contentInputView.textColor = [UIColor lightGrayColor];//colorWithRed:0.0f green:0.0f blue:0.098f alpha:0.22f];

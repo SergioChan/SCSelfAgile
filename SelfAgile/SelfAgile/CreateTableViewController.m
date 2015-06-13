@@ -307,7 +307,22 @@
     if(![self.dueDateInputView.text isEqualToString:@""] && ![self.titleInputView.text isEqualToString:@""] && ![self.contentInputView.text isEqualToString:@""] && ![self.levelInputView.text isEqualToString:@""])
     {
         NSNumber *sprintNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"];
-        NSDictionary *eventData = [NSDictionary dictionaryWithObjects:@[self.titleInputView.text,self.contentInputView.text,self.levelInputView.text,self.dueDateInputView.text,sprintNum] forKeys:@[@"title",@"content",@"level",@"endDate",@"sprintNum"]];
+        
+        NSNumber *levelValue = nil;
+        if([self.levelInputView.text isEqualToString:@"Urgent"])
+        {
+            levelValue = [NSNumber numberWithInt:2];
+        }
+        else if([self.levelInputView.text isEqualToString:@"Normal"])
+        {
+            levelValue = [NSNumber numberWithInt:1];
+        }
+        else
+        {
+            levelValue = [NSNumber numberWithInt:0];
+        }
+        
+        NSDictionary *eventData = [NSDictionary dictionaryWithObjects:@[self.titleInputView.text,self.contentInputView.text,levelValue,self.dueDateInputView.text,sprintNum] forKeys:@[@"title",@"content",@"level",@"endDate",@"sprintNum"]];
         
         // this method will return a boolean value, decide whether to save draft or not
         [SAEvent createEvents:eventData];

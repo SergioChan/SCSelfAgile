@@ -23,6 +23,11 @@
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) MNTPullToReactControl *reactControl;
 @property(nonatomic,strong) NSMutableArray *data;
+
+@property(nonatomic,strong) NSMutableArray *toDoData;
+@property(nonatomic,strong) NSMutableArray *doingData;
+@property(nonatomic,strong) NSMutableArray *doneData;
+
 @property(nonatomic) NSInteger selectedIndex;
 @end
 
@@ -35,6 +40,10 @@
     {
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:@"sprintNum"];
     }
+    
+    self.toDoData = [NSMutableArray array];
+    self.doingData = [NSMutableArray array];
+    self.doneData = [NSMutableArray array];
     
     self.titleLabel.text = @"S#1:My First Sprint";
     _data = [NSMutableArray arrayWithArray:@[@"To do", @"Doing", @"Done"]];
@@ -53,6 +62,8 @@
     UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewEvent)];
     add.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = add;
+    
+    [self initEventData];
     //[SAEvent createEvents:[NSDictionary dictionaryWithObjects:@[@"Hello world!",@"This is my first event",[NSNumber numberWithInt:1],[NSNumber numberWithInt:0]] forKeys:@[@"title",@"content",@"level",@"sprintNum"]]];
 }
 
@@ -71,7 +82,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    return 200.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -95,7 +106,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    switch(self.selectedIndex)
+    {
+        case -1:
+        case 0:
+            return self.toDoData.count;
+            break;
+        case 1:
+            return self.doingData.count;
+            break;
+        case 2:
+            return self.doneData.count;
+            break;
+        default:
+            return self.toDoData.count;
+            break;
+    }
 }
 
 
@@ -164,6 +190,20 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             self.selectedIndex = reactControl.action - 1;
+            NSInteger sprintNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue];
+            switch (self.selectedIndex) {
+                case 0:
+                    self.toDoData = [[SAEvent getToDoEventList:sprintNum] copy];
+                    break;
+                case 1:
+                    self.doingData = [[SAEvent getDoingEventList:sprintNum] copy];
+                    break;
+                case 2:
+                    self.doneData = [[SAEvent getDoneEventList:sprintNum] copy];
+                    break;
+                default:
+                    break;
+            }
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 //            usleep(1100 * 1000);
             [reactControl endAction:reactControl.action];
@@ -187,8 +227,14 @@
 #pragma mark - Create new event
 - (void)addNewEvent
 {
-    NSLog(@"hey");
     [self performSegueWithIdentifier:@"CreateNewEvent" sender:self];
+}
+
+- (void)initEventData
+{
+    NSInteger sprintNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue];
+    self.toDoData = [[SAEvent getToDoEventList:sprintNum] copy];
+    [self.tableView reloadData];
 }
 /*
 #pragma mark - Navigation

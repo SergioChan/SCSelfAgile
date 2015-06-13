@@ -49,7 +49,7 @@ static DBManager *dbManager;
 + (NSMutableArray *)getToDoEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = @"select * from Events where sprintNum = %ld and state = 0";
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 0",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {
@@ -67,7 +67,7 @@ static DBManager *dbManager;
 + (NSMutableArray *)getDoingEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = @"select * from Events where sprintNum = %ld and state = 1";
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 1",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {
@@ -85,7 +85,7 @@ static DBManager *dbManager;
 + (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = @"select * from Events where sprintNum = %ld and state = 2";
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 2",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {

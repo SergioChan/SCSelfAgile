@@ -12,5 +12,6 @@
 
 + (UIColor *)customColorForNavigationBar;
 + (UIColor *)customColorDefault;
-
++ (UIColor *)customColorYellow;
++ (UIColor *)customColorRed;
 @end

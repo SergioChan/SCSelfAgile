@@ -15,10 +15,18 @@
     return [UIColor customColorDefault];
 }
 
-+ (UIColor *)customColorDefault; {
-    //return [UIColor colorWithRed:0.0f green:210.0f/255.0f blue:120.0f/255.0f alpha:1.0f];
-    //00D278
-    return [UIColor colorWithHexString:@"00D278"];
++ (UIColor *)customColorDefault
+{
+    return [UIColor colorWithHexString:@"3CB371"];
 }
 
++ (UIColor *)customColorYellow
+{
+    return [UIColor colorWithHexString:@"FFC125"];
+}
+
++ (UIColor *)customColorRed
+{
+    return [UIColor colorWithHexString:@"EE2C2C"];
+}
 @end

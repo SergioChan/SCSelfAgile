@@ -12,7 +12,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RbH-gj-iqb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.82352941180000006" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.23529411759999999" green="0.70196078429999997" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="a09-An-gGs" kind="relationship" relationship="rootViewController" id="KJf-Kf-o2d"/>
@@ -73,7 +73,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T3X-77-CX0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.82352941180000006" blue="0.47058823529999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="barTintColor" red="0.23529411759999999" green="0.70196078429999997" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="xFn-yj-LwG" kind="relationship" relationship="rootViewController" id="jB7-NQ-Ro8"/>
@@ -98,7 +98,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="1Nz-fh-TXV">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="gM4-al-pkL">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="gM4-al-pkL">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ydT-Cb-YtF">
                                 <rect key="frame" x="16" y="7" width="15" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -124,7 +124,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="t77-1h-APC">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="t77-1h-APC">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TDa-bO-e0A">
                                 <rect key="frame" x="554" y="12" width="25" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -155,5 +155,5 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <color key="tintColor" red="0.0" green="0.82352941176470584" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.23529411764705882" green="0.70196078431372544" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

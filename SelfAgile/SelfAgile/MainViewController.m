@@ -19,6 +19,9 @@
 #import "SADoingTableViewCell.h"
 #import "SADoneTableViewCell.h"
 #import "SAToDoTableViewCell.h"
+#import "LBorderView.h"
+
+#define controlHeight 100.0f
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
@@ -30,6 +33,9 @@
 @property(nonatomic,strong) NSMutableArray *doneData;
 
 @property(nonatomic) NSInteger selectedIndex;
+
+@property(nonatomic,strong) UIImageView *processGestureImageView;
+@property(nonatomic,strong) UILabel *processIllustrateLabel;
 @end
 
 @implementation MainViewController
@@ -67,6 +73,7 @@
     self.navigationItem.rightBarButtonItem = add;
     
     [self initEventData];
+    
     //[SAEvent createEvents:[NSDictionary dictionaryWithObjects:@[@"Hello world!",@"This is my first event",[NSNumber numberWithInt:1],[NSNumber numberWithInt:0]] forKeys:@[@"title",@"content",@"level",@"sprintNum"]]];
 }
 
@@ -81,6 +88,51 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+    {
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, controlHeight)];
+        backView.backgroundColor = [UIColor customColorDefault];
+        
+        LBorderView *processView = [[LBorderView alloc]initWithFrame:CGRectMake(3.0f, 3.0f, ScreenWidth - 6.0f, controlHeight - 6.0f)];
+        processView.borderColor = [UIColor whiteColor];
+        processView.backgroundColor = [UIColor customColorDefault];
+        processView.alpha = 1.0f;
+        processView.borderType = BorderTypeDashed;
+        processView.dashPattern = 4;
+        processView.spacePattern = 4;
+        processView.borderWidth = 1.0f;
+        processView.cornerRadius = 6.0f;
+        
+        _processGestureImageView = [[UIImageView alloc]initWithFrame:CGRectMake((ScreenWidth - 250.0f)/2, 30.0f, 40.0f, 40.0f)];
+        [_processGestureImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
+        _processGestureImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
+        
+        _processIllustrateLabel = [[UILabel alloc]initWithFrame:CGRectMake(_processGestureImageView.right + 10.0f, 30.0f, 200.0f, 40.0f)];
+        _processIllustrateLabel.font = [UIFont systemFontOfSize:14.0f];
+        _processIllustrateLabel.textColor = [UIColor whiteColor];
+        _processIllustrateLabel.numberOfLines = 0;
+        _processIllustrateLabel.textAlignment = NSTextAlignmentLeft;
+        _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+        
+        [processView addSubview:_processIllustrateLabel];
+        [processView addSubview:_processGestureImageView];
+        [backView addSubview:processView];
+        return backView;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return controlHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -328,7 +380,7 @@
                     center.y = location.y;
                     snapshot.center = center;
                     snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
-                    snapshot.alpha = 0.98;
+                    snapshot.alpha = 0.6;
                     cell.alpha = 0.0;
                     
                 } completion:^(BOOL finished) {
@@ -342,6 +394,8 @@
             
         case UIGestureRecognizerStateChanged: {
             CGPoint center = snapshot.center;
+            CGPoint centerCopy = center;
+            centerCopy.y = centerCopy.y - self.tableView.contentOffset.y;
             center.y = location.y;
             snapshot.center = center;
             
@@ -373,10 +427,73 @@
                 // ... and update source so it is in sync with UI changes.
                 sourceIndexPath = indexPath;
             }
+            else
+            {
+                //
+                if(centerCopy.y < controlHeight + 64.0f)
+                {
+                    _processGestureImageView.image = [UIImage imageNamed:@"releaseGesture"];
+                    _processIllustrateLabel.text = @"请确认卡片的状态变更后松开您的手指";
+                }
+                else
+                {
+                    _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
+                    _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+                }
+            }
             break;
         }
         case UIGestureRecognizerStateEnded:
         {
+            _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
+            _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+            
+            CGPoint center = snapshot.center;
+            center.y = center.y - self.tableView.contentOffset.y;
+            if(center.y < controlHeight + 64.0f)
+            {
+                // transfer card now
+                NSLog(@"fuckfuck!!");
+                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
+                cell.hidden = NO;
+                cell.alpha = 0.0;
+                
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    snapshot.center = cell.center;
+                    snapshot.transform = CGAffineTransformIdentity;
+                    snapshot.alpha = 0.0;
+                    cell.alpha = 1.0;
+                    
+                } completion:^(BOOL finished) {
+                    
+                    sourceIndexPath = nil;
+                    [snapshot removeFromSuperview];
+                    snapshot = nil;
+                    
+                }];
+            }
+            else
+            {
+                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
+                cell.hidden = NO;
+                cell.alpha = 0.0;
+                
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    snapshot.center = cell.center;
+                    snapshot.transform = CGAffineTransformIdentity;
+                    snapshot.alpha = 0.0;
+                    cell.alpha = 1.0;
+                    
+                } completion:^(BOOL finished) {
+                    
+                    sourceIndexPath = nil;
+                    [snapshot removeFromSuperview];
+                    snapshot = nil;
+                    
+                }];
+            }
             break;
         }
         default: {

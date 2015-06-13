@@ -84,7 +84,6 @@
 {
     [super layoutSubviews];
     
-    NSLog(@"cell layoutSubviews");
     CGFloat titleHeight = [UIKitCustomUtils getTextHeightWithText:[self.event objectForKey:@"title"] andMaxWidth:ScreenWidth - 20.0f andFont:[UIFont boldSystemFontOfSize:18.0f]];
     _titleLabel.frame = CGRectMake(10.0f, 15.0f, ScreenWidth - 20.0f, titleHeight);
     _titleLabel.text = [self.event objectForKey:@"title"];
@@ -111,6 +110,10 @@
         }
             break;
         default:
+        {
+            levelText = @"Take it easy";
+            _levelLabel.backgroundColor = [UIColor customColorDefault];
+        }
             break;
     }
     _levelLabel.frame = CGRectMake(ScreenWidth - 70.0f, _dueDateLabel.top, 70.0f, 15.0f);

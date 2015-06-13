@@ -65,9 +65,9 @@ static BOOL hasAttributedString = NO;
         // Initialization code
         self.backgroundColor = [UIColor customColorDefault];
         
-        _actions = @[@{@"icon": favorite, @"hledIcon": hledFavorite, @"textDo": @"To do", @"textUndo": @"To do"},
-                     @{@"icon": archive, @"hledIcon": hledArchive, @"textDo": @"Doing", @"textUndo": @"Doing"},
-                     @{@"icon": trash, @"hledIcon": hledTrash, @"textDo": @"Done", @"textUndo": @"Done"}];
+        _actions = @[@{@"icon": favorite, @"hledIcon": hledFavorite, @"textDo": @"未完成", @"textUndo": @"未完成"},
+                     @{@"icon": archive, @"hledIcon": hledArchive, @"textDo": @"正在进行", @"textUndo": @"正在进行"},
+                     @{@"icon": trash, @"hledIcon": hledTrash, @"textDo": @"已完成", @"textUndo": @"已完成"}];
         _indexOfSelectedAction = NSNotFound;
         _imageViews = [NSMutableArray array];
         _label = nil;

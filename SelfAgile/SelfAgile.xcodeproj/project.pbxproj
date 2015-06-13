@@ -53,6 +53,7 @@
 		22C972A41B2712E900B568FD /* SAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A31B2712E900B568FD /* SAEvent.m */; };
 		22C972A71B27130500B568FD /* SADoingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A61B27130500B568FD /* SADoingTableViewCell.m */; };
 		22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A91B27131000B568FD /* SADoneTableViewCell.m */; };
+		22EA913F1B2C84A100BE3CA7 /* LBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EA913E1B2C84A100BE3CA7 /* LBorderView.m */; };
 		22F3F9821B284B13004E767E /* DictionaryJSONStringConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9811B284B13004E767E /* DictionaryJSONStringConvertor.m */; };
 		22F3F9941B284B82004E767E /* SBJson4Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9871B284B82004E767E /* SBJson4Parser.m */; };
 		22F3F9951B284B82004E767E /* SBJson4StreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F9891B284B82004E767E /* SBJson4StreamParser.m */; };
@@ -155,6 +156,8 @@
 		22C972A61B27130500B568FD /* SADoingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoingTableViewCell.m; sourceTree = "<group>"; };
 		22C972A81B27131000B568FD /* SADoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADoneTableViewCell.h; sourceTree = "<group>"; };
 		22C972A91B27131000B568FD /* SADoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoneTableViewCell.m; sourceTree = "<group>"; };
+		22EA913D1B2C84A100BE3CA7 /* LBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBorderView.h; sourceTree = "<group>"; };
+		22EA913E1B2C84A100BE3CA7 /* LBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBorderView.m; sourceTree = "<group>"; };
 		22F3F9801B284B13004E767E /* DictionaryJSONStringConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryJSONStringConvertor.h; sourceTree = "<group>"; };
 		22F3F9811B284B13004E767E /* DictionaryJSONStringConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryJSONStringConvertor.m; sourceTree = "<group>"; };
 		22F3F9851B284B82004E767E /* SBJson4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 		22C972381B2708E800B568FD /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				22EA913D1B2C84A100BE3CA7 /* LBorderView.h */,
+				22EA913E1B2C84A100BE3CA7 /* LBorderView.m */,
 				22F3F9841B284B75004E767E /* SBJson */,
 				22F3F9831B284B5D004E767E /* PullToReact */,
 			);
@@ -546,6 +551,7 @@
 				22C971F91B27022A00B568FD /* main.m in Sources */,
 				22C972A71B27130500B568FD /* SADoingTableViewCell.m in Sources */,
 				223FF2701B2B1AB300F9D40F /* DateHelper.m in Sources */,
+				22EA913F1B2C84A100BE3CA7 /* LBorderView.m in Sources */,
 				22C9726A1B270AC500B568FD /* MNTPullToReactControl+Utils.m in Sources */,
 				22C9726D1B270AC500B568FD /* UITableView+MNTPullToReact.m in Sources */,
 				221226C81B2AE98C0027EBD4 /* CreateTableViewController.m in Sources */,

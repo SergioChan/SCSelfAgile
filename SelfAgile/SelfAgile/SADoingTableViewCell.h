@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SADoingTableViewCell : UITableViewCell
-
+@property (nonatomic,strong) NSDictionary *event;
 @end

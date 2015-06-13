@@ -14,6 +14,7 @@
 #import "SAEvent.h"
 #import "UIColor+Custom.h"
 #import "UIViewExt.h"
+#import "UIKitCustomUtils.h"
 
 #import "SADoingTableViewCell.h"
 #import "SADoneTableViewCell.h"
@@ -82,7 +83,57 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200.0f;
+    switch(self.selectedIndex)
+    {
+        case 1:
+        {
+            NSDictionary *event = [self.doingData objectAtIndex:indexPath.row];
+            CGFloat height = 60.0f;
+            if([event objectForKey:@"title"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"title"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont boldSystemFontOfSize:18.0f]];
+            }
+            
+            if([event objectForKey:@"content"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"content"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont systemFontOfSize:14.0f]];
+            }
+            return height;
+        }
+            break;
+        case 2:
+        {
+            NSDictionary *event = [self.doneData objectAtIndex:indexPath.row];
+            CGFloat height = 60.0f;
+            if([event objectForKey:@"title"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"title"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont boldSystemFontOfSize:18.0f]];
+            }
+            
+            if([event objectForKey:@"content"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"content"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont systemFontOfSize:14.0f]];
+            }
+            return height;
+        }
+            break;
+        default:
+        {
+            NSDictionary *event = [self.toDoData objectAtIndex:indexPath.row];
+            CGFloat height = 60.0f;
+            if([event objectForKey:@"title"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"title"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont boldSystemFontOfSize:18.0f]];
+            }
+            
+            if([event objectForKey:@"content"])
+            {
+                height += [UIKitCustomUtils getTextHeightWithText:[event objectForKey:@"content"] andMaxWidth:ScreenWidth -20.0f andFont:[UIFont systemFontOfSize:14.0f]];
+            }
+            return height;
+        }
+            break;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,10 +159,6 @@
     // Return the number of rows in the section.
     switch(self.selectedIndex)
     {
-        case -1:
-        case 0:
-            return self.toDoData.count;
-            break;
         case 1:
             return self.doingData.count;
             break;
@@ -128,20 +175,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch(self.selectedIndex)
     {
-        case -1:
-        case 0:
-        {
-            SAToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"todoTableViewCell"];
-            if(!cell)
-            {
-                cell = [[SAToDoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"todoTableViewCell"];
-            }
-            
-            return cell;
-        }
-            break;
         case 1:
         {
+            if(indexPath.row > self.doingData.count-1)
+            {
+                // in order to protect Index out of range exception
+                return nil;
+            }
+            
+            NSDictionary *event = [self.doingData objectAtIndex:indexPath.row];
             SADoingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoingTableViewCell"];
             if(!cell)
             {
@@ -153,6 +195,13 @@
             break;
         case 2:
         {
+            if(indexPath.row > self.doneData.count-1)
+            {
+                // in order to protect Index out of range exception
+                return nil;
+            }
+            
+            NSDictionary *event = [self.doneData objectAtIndex:indexPath.row];
             SADoneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoneTableViewCell"];
             if(!cell)
             {
@@ -164,13 +213,19 @@
             break;
         default:
         {
+            if(indexPath.row > self.toDoData.count-1)
+            {
+                // in order to protect Index out of range exception
+                return nil;
+            }
+            
+            NSDictionary *event = [self.toDoData objectAtIndex:indexPath.row];
             SAToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"todoTableViewCell"];
             if(!cell)
             {
                 cell = [[SAToDoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"todoTableViewCell"];
             }
-            
-            cell.textLabel.text = @"test1";
+            cell.event = event;
             return cell;
         }
             break;
@@ -192,16 +247,15 @@
             self.selectedIndex = reactControl.action - 1;
             NSInteger sprintNum = [[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue];
             switch (self.selectedIndex) {
-                case 0:
-                    self.toDoData = [[SAEvent getToDoEventList:sprintNum] copy];
-                    break;
                 case 1:
                     self.doingData = [[SAEvent getDoingEventList:sprintNum] copy];
                     break;
                 case 2:
                     self.doneData = [[SAEvent getDoneEventList:sprintNum] copy];
                     break;
+                case 0:
                 default:
+                    self.toDoData = [[SAEvent getToDoEventList:sprintNum] copy];
                     break;
             }
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

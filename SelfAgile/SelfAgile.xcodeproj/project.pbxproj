@@ -14,6 +14,7 @@
 		223FF26D1B2B1A7900F9D40F /* CusPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FF26C1B2B1A7900F9D40F /* CusPickerView.m */; };
 		223FF2701B2B1AB300F9D40F /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FF26F1B2B1AB300F9D40F /* DateHelper.m */; };
 		223FF2731B2B1C6200F9D40F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FF2721B2B1C6200F9D40F /* NSDate+Helper.m */; };
+		226591581B2C1CCC000ABB2B /* UIKitCustomUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */; };
 		22C971F91B27022A00B568FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971F81B27022A00B568FD /* main.m */; };
 		22C971FC1B27022A00B568FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971FB1B27022A00B568FD /* AppDelegate.m */; };
 		22C972021B27022A00B568FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C972001B27022A00B568FD /* Main.storyboard */; };
@@ -88,6 +89,8 @@
 		223FF26F1B2B1AB300F9D40F /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		223FF2711B2B1C6200F9D40F /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		223FF2721B2B1C6200F9D40F /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		226591561B2C1CCC000ABB2B /* UIKitCustomUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitCustomUtils.h; sourceTree = "<group>"; };
+		226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitCustomUtils.m; sourceTree = "<group>"; };
 		22C971F31B27022A00B568FD /* SelfAgile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfAgile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C971F71B27022A00B568FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C971F81B27022A00B568FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 		22C972201B2705DA00B568FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				226591561B2C1CCC000ABB2B /* UIKitCustomUtils.h */,
+				226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */,
 				223FF2711B2B1C6200F9D40F /* NSDate+Helper.h */,
 				223FF2721B2B1C6200F9D40F /* NSDate+Helper.m */,
 				223FF26E1B2B1AB300F9D40F /* DateHelper.h */,
@@ -544,6 +549,7 @@
 				22C9726A1B270AC500B568FD /* MNTPullToReactControl+Utils.m in Sources */,
 				22C9726D1B270AC500B568FD /* UITableView+MNTPullToReact.m in Sources */,
 				221226C81B2AE98C0027EBD4 /* CreateTableViewController.m in Sources */,
+				226591581B2C1CCC000ABB2B /* UIKitCustomUtils.m in Sources */,
 				221226C21B2AE2E80027EBD4 /* UIViewExt.m in Sources */,
 				22C972231B2705E600B568FD /* DBManager.m in Sources */,
 				223FF2731B2B1C6200F9D40F /* NSDate+Helper.m in Sources */,

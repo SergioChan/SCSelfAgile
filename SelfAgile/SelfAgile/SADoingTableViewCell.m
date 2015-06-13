@@ -30,7 +30,7 @@
 
 - (void) initSubViews
 {
-    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f,ScreenWidth , 2.0f)];
+    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f,ScreenWidth , 5.0f)];
     topLine.backgroundColor = [UIColor customColorDefault];
     [self.contentView addSubview:topLine];
 }

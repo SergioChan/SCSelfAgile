@@ -19,7 +19,7 @@
 #define levelTag 10004
 
 #define ScreenBottomPadding 150.0f
-@interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate>
+@interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate,PickerViewReloadCellDelegate>
 @property (nonatomic,strong) UITextField *dueDateInputView;
 @property (nonatomic,strong) UITextField *titleInputView;
 @property (nonatomic,strong) UITextView *contentInputView;
@@ -324,7 +324,7 @@
         
         if (_cus == nil) {
             _cus = [[CusPickerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 250) andOptions:nil andType:1 andToolBarTitle:@""];
-            
+            _cus.delegate = self;
             _cus.resizeFrameDelegate = self;
             [_cus setTag:102];
         }
@@ -348,16 +348,17 @@
         [textField resignFirstResponder];
         [self.view endEditing:YES];
         
+        NSMutableArray *options = [NSMutableArray arrayWithObjects:@"Urgent",@"Normal",@"Take it easy",nil];
         if(_cusLevel == nil)
         {
-            NSMutableArray *options = [NSMutableArray arrayWithObjects:@"Urgent",@"Normal",@"Take it easy",nil];
             _cusLevel = [[CusPickerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 250) andOptions:options andType:PickerTypeStandard andToolBarTitle:@""];
-            
+            _cusLevel.delegate = self;
             _cusLevel.resizeFrameDelegate = self;
             [_cusLevel setTag:103];
         }
+        NSUInteger index = [options indexOfObject:textField.text] == NSNotFound ? 0 : [options indexOfObject:textField.text];
         
-        [(UIPickerView *)[_cusLevel viewWithTag:PickerViewTag] selectRow:0 inComponent:0 animated:YES];
+        [(UIPickerView *)[_cusLevel viewWithTag:PickerViewTag] selectRow:index inComponent:0 animated:YES];
         
         if(_cus)
         {
@@ -409,7 +410,7 @@
         [newText replaceCharactersInRange:range withString:string];
         
         if ([string length] != 0 && [newText length] > 15) {
-            textField.text = [newText substringWithRange:NSMakeRange(0, 30)];
+            textField.text = [newText substringWithRange:NSMakeRange(0, 15)];
             return NO;
         }else
         {
@@ -419,6 +420,27 @@
     return YES;
 }
 
+- (void) pickerView:(CusPickerView *)pickerView returnDataAndRefeshCellWithSelectValue:(NSString *)selectValue
+{
+    if(pickerView.tag == 102)
+    {
+        if(selectValue == nil)
+        {
+            self.dueDateInputView.text = @"2015-06-12";
+            return;
+        }
+        
+        self.dueDateInputView.text = selectValue;
+    }
+    else if(pickerView.tag == 103)
+    {
+        self.levelInputView.text = selectValue;
+    }
+    else
+    {
+        return;
+    }
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

@@ -12,6 +12,7 @@
 #import "UITableView+Helper.h"
 #import "CusPickerView.h"
 #import "NSDate+Helper.h"
+#import "SAEvent.h"
 
 #define duedateTag 10001
 #define titleTag 10002
@@ -19,7 +20,7 @@
 #define levelTag 10004
 
 #define ScreenBottomPadding 150.0f
-@interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate,PickerViewReloadCellDelegate>
+@interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate,PickerViewReloadCellDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong) UITextField *dueDateInputView;
 @property (nonatomic,strong) UITextField *titleInputView;
 @property (nonatomic,strong) UITextView *contentInputView;
@@ -267,16 +268,60 @@
     }
 }
 
+#pragma mark - UI Action
 - (IBAction)cancelCreate:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(![self.dueDateInputView.text isEqualToString:@""] ||![self.titleInputView.text isEqualToString:@""]||![self.contentInputView.text isEqualToString:@""]||![self.levelInputView.text isEqualToString:@""])
+    {
+        UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"您有尚未保存的卡片，是否要丢弃您所做的编辑？" delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:@"不保存返回" otherButtonTitles:nil];
+        sheet.tintColor = [UIColor customColorDefault];
+        [sheet showInView:self.view];
+    }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        // is this necessary?
+        self.cus = nil;
+        self.cusLevel = nil;
+        self.dueDateInputView = nil;
+        self.titleInputView = nil;
+        self.contentInputView = nil;
+        self.levelInputView = nil;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        return;
+    }
 }
 
 - (IBAction)finishEditing:(id)sender
 {
-    
+    if(![self.dueDateInputView.text isEqualToString:@""] && ![self.titleInputView.text isEqualToString:@""] && ![self.contentInputView.text isEqualToString:@""] && ![self.levelInputView.text isEqualToString:@""])
+    {
+        NSNumber *sprintNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"];
+        NSDictionary *eventData = [NSDictionary dictionaryWithObjects:@[self.titleInputView.text,self.contentInputView.text,self.levelInputView.text,self.dueDateInputView.text,sprintNum] forKeys:@[@"title",@"content",@"level",@"endDate",@"sprintNum"]];
+        
+        // this method will return a boolean value, decide whether to save draft or not
+        [SAEvent createEvents:eventData];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"您还有未填写的内容，请填写完再提交~" message:@"" delegate:self cancelButtonTitle:@"好的好的我知道了" otherButtonTitles:nil];
+        alert.tintColor = [UIColor customColorDefault];
+        [alert show];
+    }
 }
 
+#pragma mark - UITextView delegate
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if(textView.tag != contentTag)
@@ -316,6 +361,7 @@
     return YES;
 }
 
+#pragma mark - UITextField delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField.tag == duedateTag) {
@@ -332,7 +378,7 @@
         if (date) {
             [(UIDatePicker *)[_cus viewWithTag:CusPickerDateTag] setDate:date animated:YES];
         } else {
-            [(UIDatePicker *)[_cus viewWithTag:CusPickerDateTag] setDate:[NSDate dateFromString:@"2015-06-12" withFormat:[NSDate dateFormatString]] animated:YES];
+            [(UIDatePicker *)[_cus viewWithTag:CusPickerDateTag] setDate:[NSDate date] animated:YES];
         }
         
         if(_cusLevel)
@@ -420,13 +466,14 @@
     return YES;
 }
 
+#pragma mark - CusPickerView delegate
 - (void) pickerView:(CusPickerView *)pickerView returnDataAndRefeshCellWithSelectValue:(NSString *)selectValue
 {
     if(pickerView.tag == 102)
     {
         if(selectValue == nil)
         {
-            self.dueDateInputView.text = @"2015-06-12";
+            self.dueDateInputView.text = [DateHelper getFormatterDateStringFromDate:[NSDate date] andFormatter:@"yyyy-MM-dd"];
             return;
         }
         
@@ -441,49 +488,6 @@
         return;
     }
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

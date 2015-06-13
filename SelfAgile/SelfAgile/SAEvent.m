@@ -20,15 +20,17 @@ static DBManager *dbManager;
     }
 }
 
-+ (void)createEvents:(NSDictionary *)event
++ (BOOL)createEvents:(NSDictionary *)event
 {
     [self initDBManager];
     NSString *query = [NSString stringWithFormat:@"insert into Events(title,content,level,sprintNum,endDate) values('%@','%@',%d,%d,'%@')",[event objectForKey:@"title"],[event objectForKey:@"content"],[[event objectForKey:@"level"] intValue],[[event objectForKey:@"sprintNum"] intValue],[event objectForKey:@"endDate"]];
     [dbManager executeQuery:query];
     if (dbManager.affectedRows != 0) {
         NSLog(@"Save event successfully. Affected rows = %d", dbManager.affectedRows);
+        return YES;
     } else {
         NSLog(@"Could not execute the query");
+        return NO;
     }
 }
 

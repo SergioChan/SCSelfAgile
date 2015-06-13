@@ -15,7 +15,7 @@
  *
  *  @param event {title,content,level,sprintNum}
  */
-+ (void)createEvents:(NSDictionary *)event;
++ (BOOL)createEvents:(NSDictionary *)event;
 
 /**
  *  alter Events state

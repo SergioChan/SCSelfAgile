@@ -31,6 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"]== nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:@"sprintNum"];
+    }
+    
     self.titleLabel.text = @"S#1:My First Sprint";
     _data = [NSMutableArray arrayWithArray:@[@"To do", @"Doing", @"Done"]];
     // Do any additional setup after loading the view.

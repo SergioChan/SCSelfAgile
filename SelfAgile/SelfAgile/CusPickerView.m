@@ -110,16 +110,13 @@
         _datePicker.backgroundColor=[UIColor whiteColor];
         //ios 6 中文日期设置 ios5 是自动进行i匹配的
         NSLocale *locale=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-        _datePicker.datePickerMode=UIDatePickerModeDate;
         _datePicker.locale=locale;
         NSDate *currentDate=[NSDate date];
-        _datePicker.maximumDate=currentDate;
-        _datePicker.minimumDate=[DateHelper getFormatterDateFromString:@"1975-01-01" andFormatter:@"yyyy-MM-dd"];
+        _datePicker.maximumDate=[NSDate dateWithTimeIntervalSinceNow:60*60*24*365];
+        _datePicker.minimumDate=currentDate;
         [_datePicker addTarget:self action:@selector(changeDate:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:_datePicker];
     }
-
-
 }
 - (void) cancel:(id) sender
 {

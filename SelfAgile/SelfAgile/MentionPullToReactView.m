@@ -73,7 +73,7 @@ static BOOL hasAttributedString = NO;
         _label = nil;
         
         _label = [self descriptionLabel];
-        [_label setText:@"Pull to show menu"];
+        [_label setText:@"下拉显示刷新菜单"];
         [self addSubview:_label];
         _fakeMention = ({
             FakeMention *m = [[FakeMention alloc] init];
@@ -157,7 +157,7 @@ static BOOL hasAttributedString = NO;
                 }
             }
         } completion:^(BOOL finished) {
-            [_label setText:@"Pull to show menu"];
+            [_label setText:@"下拉显示刷新菜单"];
             _indexOfSelectedAction = NSNotFound;
         }];
     });
@@ -201,7 +201,7 @@ static BOOL hasAttributedString = NO;
             UIImageView *iv = _imageViews[i];
             if (0 == action) {
                 iv.image = icons[i];
-                [_label setText:@"Pull to show menu"];
+                [_label setText:@"下拉显示刷新菜单"];
             } else {
                 if (i==_indexOfSelectedAction) {
                     iv.image = hledIcons[i];

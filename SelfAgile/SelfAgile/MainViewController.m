@@ -107,7 +107,7 @@
         processView.borderWidth = 1.0f;
         processView.cornerRadius = 6.0f;
         
-        _processGestureImageView = [[UIImageView alloc]initWithFrame:CGRectMake((ScreenWidth - 250.0f)/2, 30.0f, 40.0f, 40.0f)];
+        _processGestureImageView = [[UIImageView alloc]initWithFrame:CGRectMake((ScreenWidth - 240.0f)/2, 35.0f, 30.0f, 30.0f)];
         [_processGestureImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
         _processGestureImageView.contentMode =  UIViewContentModeScaleAspectFill;
         _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];

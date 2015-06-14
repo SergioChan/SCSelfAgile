@@ -8,6 +8,19 @@
 
 #import "AppDelegate.h"
 
+#import "TWMessageBarManager.h"
+#import "UIColor+Custom.h"
+// Strings
+NSString * const kAppDelegateDemoStyleSheetImageIconError = @"icon-error.png";
+NSString * const kAppDelegateDemoStyleSheetImageIconSuccess = @"icon-success.png";
+NSString * const kAppDelegateDemoStyleSheetImageIconInfo = @"icon-info.png";
+
+@interface TWAppDelegateDemoStyleSheet : NSObject <TWMessageBarStyleSheet>
+
++ (TWAppDelegateDemoStyleSheet *)styleSheet;
+
+@end
+
 @interface AppDelegate ()
 
 @end
@@ -41,5 +54,78 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+@end
+@implementation TWAppDelegateDemoStyleSheet
+
+#pragma mark - Alloc/Init
+
++ (TWAppDelegateDemoStyleSheet *)styleSheet
+{
+    return [[TWAppDelegateDemoStyleSheet alloc] init];
+}
+
+#pragma mark - TWMessageBarStyleSheet
+
+- (UIColor *)backgroundColorForMessageType:(TWMessageBarMessageType)type
+{
+    UIColor *backgroundColor = nil;
+    switch (type)
+    {
+        case TWMessageBarMessageTypeError:
+            backgroundColor = [UIColor customColorRed];
+            break;
+        case TWMessageBarMessageTypeSuccess:
+            backgroundColor = [UIColor customColorDefault];
+            break;
+        case TWMessageBarMessageTypeInfo:
+            backgroundColor = [UIColor customColorYellow];
+            break;
+        default:
+            break;
+    }
+    return backgroundColor;
+}
+
+- (UIColor *)strokeColorForMessageType:(TWMessageBarMessageType)type
+{
+    UIColor *strokeColor = nil;
+    switch (type)
+    {
+        case TWMessageBarMessageTypeError:
+            strokeColor = [UIColor customColorRed];
+            break;
+        case TWMessageBarMessageTypeSuccess:
+            strokeColor = [UIColor customColorDefault];
+            break;
+        case TWMessageBarMessageTypeInfo:
+            strokeColor = [UIColor customColorYellow];
+            break;
+        default:
+            break;
+    }
+    return strokeColor;
+}
+
+- (UIImage *)iconImageForMessageType:(TWMessageBarMessageType)type
+{
+    UIImage *iconImage = nil;
+    switch (type)
+    {
+        case TWMessageBarMessageTypeError:
+            iconImage = [UIImage imageNamed:kAppDelegateDemoStyleSheetImageIconError];
+            break;
+        case TWMessageBarMessageTypeSuccess:
+            iconImage = [UIImage imageNamed:kAppDelegateDemoStyleSheetImageIconSuccess];
+            break;
+        case TWMessageBarMessageTypeInfo:
+            iconImage = [UIImage imageNamed:kAppDelegateDemoStyleSheetImageIconInfo];
+            break;
+        default:
+            break;
+    }
+    return iconImage;
+}
+
 
 @end

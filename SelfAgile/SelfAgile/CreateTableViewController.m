@@ -13,6 +13,7 @@
 #import "CusPickerView.h"
 #import "NSDate+Helper.h"
 #import "SAEvent.h"
+#import "TWMessageBarManager.h"
 
 #define duedateTag 10001
 #define titleTag 10002
@@ -326,13 +327,17 @@
         
         // this method will return a boolean value, decide whether to save draft or not
         [SAEvent createEvents:eventData];
+        
+        [[TWMessageBarManager sharedInstance] showMessageWithTitle:@"Congratulations!"
+                                                       description:@"成功创建卡片"
+                                                              type:TWMessageBarMessageTypeSuccess];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"您还有未填写的内容，请填写完再提交~" message:@"" delegate:self cancelButtonTitle:@"好的好的我知道了" otherButtonTitles:nil];
-        alert.tintColor = [UIColor customColorDefault];
-        [alert show];
+        [[TWMessageBarManager sharedInstance] showMessageWithTitle:@"Notice"
+                                                       description:@"您还有未填写的内容，请填写完再提交"
+                                                              type:TWMessageBarMessageTypeInfo];
     }
 }
 

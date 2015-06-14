@@ -34,6 +34,11 @@
 
 @property(nonatomic) NSInteger selectedIndex;
 
+@property(nonatomic) CGSize snapShotSize;
+@property(nonatomic) BOOL isSnapShotSmall;
+
+@property(nonatomic,strong) UIView *processBackView;
+@property(nonatomic,strong) LBorderView *processView;
 @property(nonatomic,strong) UIImageView *processGestureImageView;
 @property(nonatomic,strong) UILabel *processIllustrateLabel;
 @end
@@ -94,22 +99,41 @@
 {
     if(section == 0)
     {
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, controlHeight)];
-        backView.backgroundColor = [UIColor customColorDefault];
+        NSString *nextStatus = @"正在进行中";
+        switch (self.selectedIndex) {
+            case 1:
+            {
+                nextStatus = @"已完成";
+            }
+                break;
+            case 2:
+            {
+                return nil;
+            }
+                break;
+            default:
+            {
+                nextStatus = @"正在进行中";
+            }
+                break;
+        }
         
-        LBorderView *processView = [[LBorderView alloc]initWithFrame:CGRectMake(3.0f, 3.0f, ScreenWidth - 6.0f, controlHeight - 6.0f)];
-        processView.borderColor = [UIColor whiteColor];
-        processView.backgroundColor = [UIColor customColorDefault];
-        processView.alpha = 1.0f;
-        processView.borderType = BorderTypeDashed;
-        processView.dashPattern = 4;
-        processView.spacePattern = 4;
-        processView.borderWidth = 1.0f;
-        processView.cornerRadius = 6.0f;
+        _processBackView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, controlHeight)];
+        _processBackView.backgroundColor = [UIColor clearColor];
+        
+        _processView = [[LBorderView alloc]initWithFrame:CGRectMake(3.0f, 3.0f, ScreenWidth - 6.0f, controlHeight - 6.0f)];
+        _processView.borderColor = [UIColor whiteColor];
+        _processView.backgroundColor = [UIColor customColorYellow];
+        _processView.alpha = 1.0f;
+        _processView.borderType = BorderTypeDashed;
+        _processView.dashPattern = 6;
+        _processView.spacePattern = 4;
+        _processView.borderWidth = 2.0f;
+        _processView.cornerRadius = 6.0f;
         
         _processGestureImageView = [[UIImageView alloc]initWithFrame:CGRectMake((ScreenWidth - 240.0f)/2, 35.0f, 30.0f, 30.0f)];
         [_processGestureImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
-        _processGestureImageView.contentMode =  UIViewContentModeScaleAspectFill;
+        _processGestureImageView.contentMode =  UIViewContentModeCenter;
         _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
         
         _processIllustrateLabel = [[UILabel alloc]initWithFrame:CGRectMake(_processGestureImageView.right + 10.0f, 30.0f, 200.0f, 40.0f)];
@@ -117,12 +141,13 @@
         _processIllustrateLabel.textColor = [UIColor whiteColor];
         _processIllustrateLabel.numberOfLines = 0;
         _processIllustrateLabel.textAlignment = NSTextAlignmentLeft;
-        _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+        _processIllustrateLabel.text = [NSString stringWithFormat:@"长按卡片拖拽到这里移动到%@状态",nextStatus];
         
-        [processView addSubview:_processIllustrateLabel];
-        [processView addSubview:_processGestureImageView];
-        [backView addSubview:processView];
-        return backView;
+        [_processView addSubview:_processIllustrateLabel];
+        [_processView addSubview:_processGestureImageView];
+        [_processBackView addSubview:_processView];
+        
+        return _processBackView;
     }
     else
     {
@@ -132,7 +157,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return controlHeight;
+    switch (self.selectedIndex) {
+        case 1:
+        {
+            return controlHeight;
+        }
+            break;
+        case 2:
+        {
+            return 0.0f;
+        }
+            break;
+        default:
+        {
+            return controlHeight;
+        }
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -313,7 +354,7 @@
                     break;
             }
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-//            usleep(1100 * 1000);
+            usleep(600 * 1000);
             [reactControl endAction:reactControl.action];
         });
     });
@@ -373,6 +414,7 @@
                 __block CGPoint center = cell.center;
                 snapshot.center = center;
                 snapshot.alpha = 0.0;
+                self.isSnapShotSmall = NO;
                 [self.tableView addSubview:snapshot];
                 [UIView animateWithDuration:0.25 animations:^{
                     
@@ -382,7 +424,7 @@
                     snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
                     snapshot.alpha = 0.6;
                     cell.alpha = 0.0;
-                    
+                    self.snapShotSize = snapshot.size;
                 } completion:^(BOOL finished) {
                     
                     cell.hidden = YES;
@@ -399,47 +441,75 @@
             center.y = location.y;
             snapshot.center = center;
             
-            // Is destination valid and is it different from source?
-            if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
-                
-                // ... update data source.
-                switch (self.selectedIndex) {
-                    case 1:
-                    {
-                        [self.doingData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
-                    }
-                        break;
-                    case 2:
-                    {
-                        [self.doneData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
-                    }
-                        break;
-                    default:
-                    {
-                        [self.toDoData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
-                    }
-                        break;
-                }
-                
-                // ... move the rows.
-                [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
-
-                // ... and update source so it is in sync with UI changes.
-                sourceIndexPath = indexPath;
-            }
-            else
+            if(centerCopy.y < controlHeight + 64.0f)
             {
-                //
-                if(centerCopy.y < controlHeight + 64.0f)
+                if(!self.isSnapShotSmall)
                 {
                     _processGestureImageView.image = [UIImage imageNamed:@"releaseGesture"];
                     _processIllustrateLabel.text = @"请确认卡片的状态变更后松开您的手指";
+                    _processView.backgroundColor = [UIColor customColorDefault];
+                    [UIView animateWithDuration:0.25 animations:^{
+                        snapshot.height = self.snapShotSize.height/2;
+                        snapshot.width = self.snapShotSize.width/2;
+                        CGPoint center_tmp = snapshot.center;
+                        center_tmp.x = ScreenWidth/2;
+                        snapshot.center=center_tmp;
+                        
+                        snapshot.transform = CGAffineTransformIdentity;
+                    } completion:^(BOOL finished) {
+                        self.isSnapShotSmall = YES;
+                    }];
                 }
-                else
+            }
+            else
+            {
+                if(self.isSnapShotSmall)
                 {
                     _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
                     _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+                    _processView.backgroundColor = [UIColor customColorYellow];
+                    [UIView animateWithDuration:0.25 animations:^{
+                        snapshot.height = self.snapShotSize.height;
+                        snapshot.width = self.snapShotSize.width;
+                        CGPoint center_tmp = snapshot.center;
+                        center_tmp.x = ScreenWidth/2;
+                        snapshot.center=center_tmp;
+                        
+                        snapshot.transform = CGAffineTransformIdentity;
+                    } completion:^(BOOL finished) {
+                        self.isSnapShotSmall = NO;
+                    }];
                 }
+                
+                // Is destination valid and is it different from source?
+                if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
+                    
+                    // ... update data source.
+                    switch (self.selectedIndex) {
+                        case 1:
+                        {
+                            [self.doingData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
+                        }
+                            break;
+                        case 2:
+                        {
+                            [self.doneData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
+                        }
+                            break;
+                        default:
+                        {
+                            [self.toDoData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
+                        }
+                            break;
+                    }
+                    
+                    // ... move the rows.
+                    [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
+                    
+                    // ... and update source so it is in sync with UI changes.
+                    sourceIndexPath = indexPath;
+                }
+                
             }
             break;
         }

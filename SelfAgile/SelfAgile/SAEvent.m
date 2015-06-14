@@ -34,6 +34,11 @@ static DBManager *dbManager;
     }
 }
 
++ (void)getMaxIndex
+{
+    NSString *query = [NSString stringWithFormat:@"select MAX(customIndex) from Events where sprintNum = %ld and state = 0 order by customIndex desc",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+}
 + (void)alterEvents:(NSInteger)eventId toState:(NSInteger)desState
 {
     [self initDBManager];

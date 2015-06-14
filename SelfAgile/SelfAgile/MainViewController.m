@@ -517,7 +517,7 @@
         {
             _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
             _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
-            
+            _processView.backgroundColor = [UIColor customColorYellow];
             CGPoint center = snapshot.center;
             center.y = center.y - self.tableView.contentOffset.y;
             if(center.y < controlHeight + 64.0f)

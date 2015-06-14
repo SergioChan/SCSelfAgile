@@ -26,6 +26,21 @@
 + (void)alterEvents:(NSInteger)eventId toState:(NSInteger)desState;
 
 /**
+ *  exchange events with custom Index to sort
+ *
+ *  @param sourceEvent
+ *  @param desEvent
+ */
++ (void)exchangeCustomIndexFronEvent:(NSDictionary *)sourceEvent withEvent:(NSDictionary *)desEvent;
+
+/**
+ *  delete event using event id
+ *
+ *  @param eventId
+ */
++ (void)deleteEvent:(NSInteger)eventId;
+
+/**
  *  get todo event list
  *
  *  @param sprintNum current sprintNum

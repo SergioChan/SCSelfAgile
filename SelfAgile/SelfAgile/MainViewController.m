@@ -284,7 +284,7 @@
             {
                 cell = [[SADoingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoingTableViewCell"];
             }
-            
+            cell.event = event;
             return cell;
         }
             break;
@@ -302,7 +302,7 @@
             {
                 cell = [[SADoneTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoneTableViewCell"];
             }
-            
+            cell.event = event;
             return cell;
         }
             break;

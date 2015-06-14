@@ -46,10 +46,35 @@ static DBManager *dbManager;
     }
 }
 
++ (void)deleteEvent:(NSInteger)eventId
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"delete from Events where id = %ld",eventId];
+    [dbManager executeQuery:query];
+    if (dbManager.affectedRows != 0) {
+        NSLog(@"delete event successfully. Affected rows = %d", dbManager.affectedRows);
+    } else {
+        NSLog(@"Could not execute the query");
+    }
+}
+
++ (void)exchangeCustomIndexFronEvent:(NSDictionary *)sourceEvent withEvent:(NSDictionary *)desEvent
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"update Events set customIndex = %ld where id = %ld",[[desEvent objectForKey:@"customIndex"] integerValue],[[sourceEvent objectForKey:@"id"] integerValue]];
+    [dbManager executeQuery:query];
+    if (dbManager.affectedRows != 0) {
+        NSString *query_2 = [NSString stringWithFormat:@"update Events set customIndex = %ld where id = %ld",[[sourceEvent objectForKey:@"customIndex"] integerValue],[[desEvent objectForKey:@"id"] integerValue]];
+        [dbManager executeQuery:query_2];
+    } else {
+        NSLog(@"Could not execute the query");
+    }
+}
+
 + (NSMutableArray *)getToDoEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 0",sprintNum];
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 0 order by customIndex desc",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {
@@ -67,7 +92,7 @@ static DBManager *dbManager;
 + (NSMutableArray *)getDoingEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 1",sprintNum];
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 1 order by customIndex desc",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {
@@ -85,7 +110,7 @@ static DBManager *dbManager;
 + (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum
 {
     [self initDBManager];
-    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 2",sprintNum];
+    NSString *query = [NSString stringWithFormat:@"select * from Events where sprintNum = %ld and state = 2 order by customIndex desc",sprintNum];
     NSArray *result = [dbManager loadDataFromDB:query];
     NSMutableArray *eventsList = [NSMutableArray array];
     if (result.count > 0) {
@@ -99,4 +124,5 @@ static DBManager *dbManager;
         return eventsList;
     }
 }
+
 @end

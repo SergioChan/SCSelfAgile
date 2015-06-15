@@ -66,4 +66,6 @@
  *  @return event list
  */
 + (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum;
+
++ (NSInteger)getMaxIndex;
 @end

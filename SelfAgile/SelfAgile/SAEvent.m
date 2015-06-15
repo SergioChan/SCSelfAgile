@@ -23,7 +23,8 @@ static DBManager *dbManager;
 + (BOOL)createEvents:(NSDictionary *)event
 {
     [self initDBManager];
-    NSString *query = [NSString stringWithFormat:@"insert into Events(title,content,level,sprintNum,endDate) values('%@','%@',%d,%d,'%@')",[event objectForKey:@"title"],[event objectForKey:@"content"],[[event objectForKey:@"level"] intValue],[[event objectForKey:@"sprintNum"] intValue],[event objectForKey:@"endDate"]];
+    NSInteger index = [self getMaxIndex] + 1;
+    NSString *query = [NSString stringWithFormat:@"insert into Events(title,content,level,sprintNum,endDate,customIndex) values('%@','%@',%d,%d,'%@',%ld)",[event objectForKey:@"title"],[event objectForKey:@"content"],[[event objectForKey:@"level"] intValue],[[event objectForKey:@"sprintNum"] intValue],[event objectForKey:@"endDate"],index];
     [dbManager executeQuery:query];
     if (dbManager.affectedRows != 0) {
         NSLog(@"Save event successfully. Affected rows = %d", dbManager.affectedRows);
@@ -34,11 +35,14 @@ static DBManager *dbManager;
     }
 }
 
-+ (void)getMaxIndex
++ (NSInteger)getMaxIndex
 {
-    NSString *query = [NSString stringWithFormat:@"select MAX(customIndex) from Events where sprintNum = %ld and state = 0 order by customIndex desc",sprintNum];
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select MAX(customIndex) as tmp from Events"];
     NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
 }
+
 + (void)alterEvents:(NSInteger)eventId toState:(NSInteger)desState
 {
     [self initDBManager];

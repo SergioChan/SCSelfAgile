@@ -400,6 +400,8 @@
     static NSIndexPath  *sourceIndexPath = nil;
     ///< Initial index path, where gesture begins.
     
+    static NSInteger    eventId = 0;
+    
     switch (state) {
         case UIGestureRecognizerStateBegan: {
             if (indexPath) {
@@ -407,6 +409,24 @@
                 
                 UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
                 
+                switch (self.selectedIndex) {
+                    case 1:
+                    {
+                        eventId = [[[self.doingData objectAtIndex:indexPath.row] objectForKey:@"id"] integerValue];
+                    }
+                        break;
+                    case 2:
+                    {
+                        eventId = [[[self.doneData objectAtIndex:indexPath.row] objectForKey:@"id"] integerValue];
+                    }
+                        break;
+                    default:
+                    {
+                        eventId = [[[self.toDoData objectAtIndex:indexPath.row] objectForKey:@"id"] integerValue];
+                    }
+                        break;
+                }
+
                 // Take a snapshot of the selected row using helper method.
                 snapshot = [self customSnapshoFromView:cell];
                 
@@ -484,29 +504,29 @@
                 // Is destination valid and is it different from source?
                 if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
                     
-                    // ... update data source.
                     switch (self.selectedIndex) {
                         case 1:
                         {
+                            [SAEvent exchangeCustomIndexFronEvent:[self.doingData objectAtIndex:indexPath.row] withEvent:[self.doingData objectAtIndex:sourceIndexPath.row]];
                             [self.doingData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
                         }
                             break;
                         case 2:
                         {
+                            [SAEvent exchangeCustomIndexFronEvent:[self.doneData objectAtIndex:indexPath.row] withEvent:[self.doneData objectAtIndex:sourceIndexPath.row]];
                             [self.doneData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
                         }
                             break;
                         default:
                         {
+                            [SAEvent exchangeCustomIndexFronEvent:[self.toDoData objectAtIndex:indexPath.row] withEvent:[self.toDoData objectAtIndex:sourceIndexPath.row]];
                             [self.toDoData exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
                         }
                             break;
                     }
                     
-                    // ... move the rows.
                     [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
-                    
-                    // ... and update source so it is in sync with UI changes.
+                    NSLog(@"sourceIndexPath changed to:%ld",indexPath.row);
                     sourceIndexPath = indexPath;
                 }
                 
@@ -520,49 +540,75 @@
             _processView.backgroundColor = [UIColor customColorYellow];
             CGPoint center = snapshot.center;
             center.y = center.y - self.tableView.contentOffset.y;
-            if(center.y < controlHeight + 64.0f)
+            if(center.y < controlHeight + 64.0f && self.selectedIndex != 2)
             {
                 // transfer card now
                 NSLog(@"fuckfuck!!");
-                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
-                cell.hidden = NO;
-                cell.alpha = 0.0;
+                switch (self.selectedIndex) {
+                    case 1:
+                    {
+                        [SAEvent alterEvents:eventId toState:2];
+                        for(NSInteger i=0;i<self.doingData.count;i++)
+                        {
+                            if ([[[self.doingData objectAtIndex:i] objectForKey:@"id"] isEqualToString:[NSString stringWithFormat:@"%ld",eventId]])
+                            {
+                                [self.doingData removeObjectAtIndex:i];
+                                break;
+                            }
+                        }
+                    }
+                        break;
+                    case 2:
+                    {
+                        return;
+                    }
+                        break;
+                    default:
+                    {
+                        [SAEvent alterEvents:eventId toState:1];
+                        for(NSInteger i=0;i<self.toDoData.count;i++)
+                        {
+                            if ([[[self.toDoData objectAtIndex:i] objectForKey:@"id"] isEqualToString:[NSString stringWithFormat:@"%ld",eventId]])
+                            {
+                                [self.toDoData removeObjectAtIndex:i];
+                                break;
+                            }
+                        }
+                    }
+                        break;
+                }
+                
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
                 
                 [UIView animateWithDuration:0.25 animations:^{
-                    
-                    snapshot.center = cell.center;
-                    snapshot.transform = CGAffineTransformIdentity;
-                    snapshot.alpha = 0.0;
-                    cell.alpha = 1.0;
-                    
+                    [snapshot setFrame:CGRectZero];
                 } completion:^(BOOL finished) {
-                    
+                    eventId = 0;
                     sourceIndexPath = nil;
                     [snapshot removeFromSuperview];
                     snapshot = nil;
-                    
                 }];
             }
             else
             {
-                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
-                cell.hidden = NO;
-                cell.alpha = 0.0;
-                
-                [UIView animateWithDuration:0.25 animations:^{
+                    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
+                    cell.hidden = NO;
+                    cell.alpha = 0.0;
                     
-                    snapshot.center = cell.center;
-                    snapshot.transform = CGAffineTransformIdentity;
-                    snapshot.alpha = 0.0;
-                    cell.alpha = 1.0;
-                    
-                } completion:^(BOOL finished) {
-                    
-                    sourceIndexPath = nil;
-                    [snapshot removeFromSuperview];
-                    snapshot = nil;
-                    
-                }];
+                    [UIView animateWithDuration:0.25 animations:^{
+                        
+                        snapshot.center = cell.center;
+                        snapshot.transform = CGAffineTransformIdentity;
+                        snapshot.alpha = 0.0;
+                        cell.alpha = 1.0;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        sourceIndexPath = nil;
+                        [snapshot removeFromSuperview];
+                        snapshot = nil;
+                        
+                    }];
             }
             break;
         }

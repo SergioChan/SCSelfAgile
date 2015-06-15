@@ -120,7 +120,7 @@
 
 - (NSArray *)loadDataFromDB:(NSString *)query
 {
-    NSLog(@"run query:%@",query);
+    //NSLog(@"run query:%@",query);
     [self runQuery:[query UTF8String] isQueryExecutable:NO];
     
     return (NSArray *)self.arrResults;
@@ -128,7 +128,7 @@
 
 - (void)executeQuery:(NSString *)query
 {
-    NSLog(@"run execute query:%@",query);
+    //NSLog(@"run execute query:%@",query);
     [self runQuery:[query UTF8String] isQueryExecutable:YES];
 }
 

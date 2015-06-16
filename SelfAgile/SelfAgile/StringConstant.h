@@ -12,4 +12,8 @@
 #define ToDoDueDateLabelText @"未完成 截止日期 | "
 #define DoingDueDateLabelText @"正在进行 截止日期 | "
 #define DoneDueDateLabelText @"已完成 截止日期 | "
+
+#define MenuHelpText @"怎么用SelfAgile"
+#define MenuOverviewText @"当前迭代Overview"
+#define MenuAboutText @"关于SelfAgile"
 #endif

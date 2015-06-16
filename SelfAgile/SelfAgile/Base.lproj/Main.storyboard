@@ -37,8 +37,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="LOS-0y-umk">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="6xb-bR-STZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="978-dE-Bak">
+                                <rect key="frame" x="16" y="6" width="24" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="menu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openMenu:" destination="a09-An-gGs" eventType="touchUpInside" id="HRQ-Wz-gzC"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="2fV-FL-Zub">
-                            <rect key="frame" x="40" y="6" width="240" height="33"/>
+                            <rect key="frame" x="51" y="6" width="219" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kR-OL-lmi">
@@ -149,6 +162,7 @@
     <resources>
         <image name="back" width="19" height="30"/>
         <image name="finish" width="35" height="31"/>
+        <image name="menu" width="48" height="31"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

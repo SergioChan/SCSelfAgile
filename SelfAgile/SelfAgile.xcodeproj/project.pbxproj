@@ -15,6 +15,8 @@
 		223FF2701B2B1AB300F9D40F /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FF26F1B2B1AB300F9D40F /* DateHelper.m */; };
 		223FF2731B2B1C6200F9D40F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 223FF2721B2B1C6200F9D40F /* NSDate+Helper.m */; };
 		226591581B2C1CCC000ABB2B /* UIKitCustomUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */; };
+		22AD72C41B30539F00910F87 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AD72C11B30539E00910F87 /* DOPNavbarMenu.m */; };
+		22AD72C51B30539F00910F87 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AD72C31B30539E00910F87 /* UIView+DOPExtension.m */; };
 		22C971F91B27022A00B568FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971F81B27022A00B568FD /* main.m */; };
 		22C971FC1B27022A00B568FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C971FB1B27022A00B568FD /* AppDelegate.m */; };
 		22C972021B27022A00B568FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C972001B27022A00B568FD /* Main.storyboard */; };
@@ -100,6 +102,10 @@
 		226591561B2C1CCC000ABB2B /* UIKitCustomUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitCustomUtils.h; sourceTree = "<group>"; };
 		226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitCustomUtils.m; sourceTree = "<group>"; };
 		22AD72BE1B3050F800910F87 /* StringConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringConstant.h; sourceTree = "<group>"; };
+		22AD72C01B30539E00910F87 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPNavbarMenu.h; sourceTree = "<group>"; };
+		22AD72C11B30539E00910F87 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPNavbarMenu.m; sourceTree = "<group>"; };
+		22AD72C21B30539E00910F87 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DOPExtension.h"; sourceTree = "<group>"; };
+		22AD72C31B30539E00910F87 /* UIView+DOPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DOPExtension.m"; sourceTree = "<group>"; };
 		22C971F31B27022A00B568FD /* SelfAgile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfAgile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C971F71B27022A00B568FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C971F81B27022A00B568FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -216,6 +222,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22AD72BF1B30539E00910F87 /* DOPNavbarMenu */ = {
+			isa = PBXGroup;
+			children = (
+				22AD72C01B30539E00910F87 /* DOPNavbarMenu.h */,
+				22AD72C11B30539E00910F87 /* DOPNavbarMenu.m */,
+				22AD72C21B30539E00910F87 /* UIView+DOPExtension.h */,
+				22AD72C31B30539E00910F87 /* UIView+DOPExtension.m */,
+			);
+			path = DOPNavbarMenu;
+			sourceTree = "<group>";
+		};
+		22AD72C61B3053A500910F87 /* LBorderView */ = {
+			isa = PBXGroup;
+			children = (
+				22EA913D1B2C84A100BE3CA7 /* LBorderView.h */,
+				22EA913E1B2C84A100BE3CA7 /* LBorderView.m */,
+			);
+			name = LBorderView;
+			sourceTree = "<group>";
+		};
 		22C971EA1B27022A00B568FD = {
 			isa = PBXGroup;
 			children = (
@@ -332,9 +358,9 @@
 		22C972381B2708E800B568FD /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				22AD72C61B3053A500910F87 /* LBorderView */,
+				22AD72BF1B30539E00910F87 /* DOPNavbarMenu */,
 				22EA91511B2D0B8600BE3CA7 /* TWMessageBar */,
-				22EA913D1B2C84A100BE3CA7 /* LBorderView.h */,
-				22EA913E1B2C84A100BE3CA7 /* LBorderView.m */,
 				22F3F9841B284B75004E767E /* SBJson */,
 				22F3F9831B284B5D004E767E /* PullToReact */,
 			);
@@ -593,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AD72C51B30539F00910F87 /* UIView+DOPExtension.m in Sources */,
 				22EA91421B2D0AC500BE3CA7 /* TWMessageBarManager.m in Sources */,
 				22F3F9951B284B82004E767E /* SBJson4StreamParser.m in Sources */,
 				22C971FC1B27022A00B568FD /* AppDelegate.m in Sources */,
@@ -621,6 +648,7 @@
 				221226C81B2AE98C0027EBD4 /* CreateTableViewController.m in Sources */,
 				226591581B2C1CCC000ABB2B /* UIKitCustomUtils.m in Sources */,
 				221226C21B2AE2E80027EBD4 /* UIViewExt.m in Sources */,
+				22AD72C41B30539F00910F87 /* DOPNavbarMenu.m in Sources */,
 				22C972231B2705E600B568FD /* DBManager.m in Sources */,
 				223FF2731B2B1C6200F9D40F /* NSDate+Helper.m in Sources */,
 				22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */,

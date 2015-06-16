@@ -20,10 +20,16 @@
 #import "SADoneTableViewCell.h"
 #import "SAToDoTableViewCell.h"
 #import "LBorderView.h"
+#import "DOPNavbarMenu/DOPNavbarMenu.h"
+#import "StringConstant.h"
 
 #define controlHeight 100.0f
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,DOPNavbarMenuDelegate>
+
+@property (assign, nonatomic) NSInteger numberOfItemsInRow;
+@property (strong, nonatomic) DOPNavbarMenu *menu;
+
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) MNTPullToReactControl *reactControl;
 @property(nonatomic,strong) NSMutableArray *data;
@@ -45,9 +51,23 @@
 
 @implementation MainViewController
 
+- (DOPNavbarMenu *)menu {
+    if (_menu == nil) {
+        DOPNavbarMenuItem *item1 = [DOPNavbarMenuItem ItemWithTitle:MenuHelpText icon:[UIImage imageNamed:@"help"]];
+        DOPNavbarMenuItem *item2 = [DOPNavbarMenuItem ItemWithTitle:MenuOverviewText icon:[UIImage imageNamed:@"overview"]];
+        DOPNavbarMenuItem *item3 = [DOPNavbarMenuItem ItemWithTitle:MenuAboutText icon:[UIImage imageNamed:@"about"]];
+        
+        _menu = [[DOPNavbarMenu alloc] initWithItems:@[item1,item2,item3] width:self.view.dop_width maximumNumberInRow:_numberOfItemsInRow];
+        _menu.backgroundColor = [UIColor customColorDefault];
+        _menu.separatarColor = [UIColor whiteColor];
+        _menu.delegate = self;
+    }
+    return _menu;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.numberOfItemsInRow = 3;
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"]== nil)
     {
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:@"sprintNum"];
@@ -73,6 +93,7 @@
     [self.reactControl addTarget:self action:@selector(reaction:) forControlEvents:UIControlEventValueChanged];
     self.tableView.reactControl = self.reactControl;
     self.selectedIndex = 0;
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewEvent)];
     add.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = add;
@@ -658,6 +679,26 @@
     snapshot.layer.shadowOpacity = 0.4;
     
     return snapshot;
+}
+- (IBAction)openMenu:(id)sender {
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    if (self.menu.isOpen) {
+        [self.menu dismissWithAnimation:YES];
+    } else {
+        [self.menu showInNavigationController:self.navigationController];
+    }
+}
+
+- (void)didShowMenu:(DOPNavbarMenu *)menu {
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+}
+
+- (void)didDismissMenu:(DOPNavbarMenu *)menu {
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+}
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+    NSLog(@"fuck at%ld",index);
 }
 
 /*

@@ -484,42 +484,48 @@
             
             if(centerCopy.y < controlHeight + 64.0f)
             {
-                if(!self.isSnapShotSmall)
+                if(self.selectedIndex!=2)
                 {
-                    _processGestureImageView.image = [UIImage imageNamed:@"releaseGesture"];
-                    _processIllustrateLabel.text = @"请确认卡片的状态变更后松开您的手指";
-                    _processView.backgroundColor = [UIColor customColorDefault];
-                    [UIView animateWithDuration:0.25 animations:^{
-                        snapshot.height = self.snapShotSize.height/2;
-                        snapshot.width = self.snapShotSize.width/2;
-                        CGPoint center_tmp = snapshot.center;
-                        center_tmp.x = ScreenWidth/2;
-                        snapshot.center=center_tmp;
-                        
-                        snapshot.transform = CGAffineTransformIdentity;
-                    } completion:^(BOOL finished) {
-                        self.isSnapShotSmall = YES;
-                    }];
+                    if(!self.isSnapShotSmall)
+                    {
+                        _processGestureImageView.image = [UIImage imageNamed:@"releaseGesture"];
+                        _processIllustrateLabel.text = @"请确认卡片的状态变更后松开您的手指";
+                        _processView.backgroundColor = [UIColor customColorDefault];
+                        [UIView animateWithDuration:0.25 animations:^{
+                            snapshot.height = self.snapShotSize.height/2;
+                            snapshot.width = self.snapShotSize.width/2;
+                            CGPoint center_tmp = snapshot.center;
+                            center_tmp.x = ScreenWidth/2;
+                            snapshot.center=center_tmp;
+                            
+                            snapshot.transform = CGAffineTransformIdentity;
+                        } completion:^(BOOL finished) {
+                            self.isSnapShotSmall = YES;
+                        }];
+                    }
                 }
             }
             else
             {
-                if(self.isSnapShotSmall)
+                if(self.selectedIndex!=2)
                 {
-                    _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
-                    _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
-                    _processView.backgroundColor = [UIColor customColorYellow];
-                    [UIView animateWithDuration:0.25 animations:^{
-                        snapshot.height = self.snapShotSize.height;
-                        snapshot.width = self.snapShotSize.width;
-                        CGPoint center_tmp = snapshot.center;
-                        center_tmp.x = ScreenWidth/2;
-                        snapshot.center=center_tmp;
-                        
-                        snapshot.transform = CGAffineTransformIdentity;
-                    } completion:^(BOOL finished) {
-                        self.isSnapShotSmall = NO;
-                    }];
+                    if(self.isSnapShotSmall)
+                    {
+                        _processGestureImageView.image = [UIImage imageNamed:@"holdGesture"];
+                        _processIllustrateLabel.text = @"长按卡片拖拽到这里移动到正在进行中状态";
+                        _processView.backgroundColor = [UIColor customColorYellow];
+                        [UIView animateWithDuration:0.25 animations:^{
+                            snapshot.height = self.snapShotSize.height;
+                            snapshot.width = self.snapShotSize.width;
+                            CGPoint center_tmp = snapshot.center;
+                            center_tmp.x = ScreenWidth/2;
+                            snapshot.center=center_tmp;
+                            
+                            snapshot.transform = CGAffineTransformIdentity;
+                        } completion:^(BOOL finished) {
+                            self.isSnapShotSmall = NO;
+                        }];
+                    }
                 }
                 
                 // Is destination valid and is it different from source?

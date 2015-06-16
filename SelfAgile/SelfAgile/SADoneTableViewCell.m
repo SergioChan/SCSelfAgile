@@ -10,6 +10,7 @@
 #import "UIViewExt.h"
 #import "UIColor+Custom.h"
 #import "UIKitCustomUtils.h"
+#import "StringConstant.h"
 
 @interface SADoneTableViewCell ()
 @property (nonatomic,strong) UILabel *titleLabel;
@@ -50,7 +51,7 @@
     [self.contentView addSubview:_titleLabel];
     
     _dueDatePrefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _dueDatePrefixLabel.text = @"DueDate | ";
+    _dueDatePrefixLabel.text = DoneDueDateLabelText;
     _dueDatePrefixLabel.textAlignment = NSTextAlignmentLeft;
     _dueDatePrefixLabel.font = [UIFont systemFontOfSize:11.0f];
     _dueDatePrefixLabel.textColor = [UIColor customColorDefault];
@@ -86,7 +87,7 @@
     _titleLabel.frame = CGRectMake(10.0f, 15.0f, ScreenWidth - 20.0f, titleHeight);
     _titleLabel.text = [self.event objectForKey:@"title"];
     
-    CGFloat prefixWidth = [UIKitCustomUtils getTextWidthWithText:@"DueDate | " andMaxHeight:15.0f andFont:[UIFont systemFontOfSize:11.0f]];
+    CGFloat prefixWidth = [UIKitCustomUtils getTextWidthWithText:DoneDueDateLabelText andMaxHeight:15.0f andFont:[UIFont systemFontOfSize:11.0f]];
     _dueDatePrefixLabel.frame = CGRectMake(10.0f, _titleLabel.bottom + 10.0f, prefixWidth, 15.0f);
     
     _dueDateLabel.frame = CGRectMake(_dueDatePrefixLabel.right, _titleLabel.bottom + 10.0f, 100.0f, 15.0f);

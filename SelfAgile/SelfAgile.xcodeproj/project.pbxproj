@@ -99,6 +99,7 @@
 		223FF2721B2B1C6200F9D40F /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		226591561B2C1CCC000ABB2B /* UIKitCustomUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitCustomUtils.h; sourceTree = "<group>"; };
 		226591571B2C1CCC000ABB2B /* UIKitCustomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitCustomUtils.m; sourceTree = "<group>"; };
+		22AD72BE1B3050F800910F87 /* StringConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringConstant.h; sourceTree = "<group>"; };
 		22C971F31B27022A00B568FD /* SelfAgile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfAgile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C971F71B27022A00B568FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C971F81B27022A00B568FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 				22C972221B2705E600B568FD /* DBManager.m */,
 				22C9729B1B27115200B568FD /* UIImage+Helper.h */,
 				22C9729C1B27115200B568FD /* UIImage+Helper.m */,
+				22AD72BE1B3050F800910F87 /* StringConstant.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";

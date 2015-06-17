@@ -179,7 +179,15 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
     UIView *view_1 = [[[UIApplication sharedApplication] keyWindow].subviews objectAtIndex:0];
     UIView *view_2 = [view_1.subviews objectAtIndex:0];
     
-    [view_2 insertSubview:messageView belowSubview:[view_2.subviews objectAtIndex:1]];
+    if(view_2.subviews.count<2)
+    {
+        //ios 7
+        [view_1 insertSubview:messageView belowSubview:[view_1.subviews objectAtIndex:1]];
+    }
+    else
+    {
+        [view_2 insertSubview:messageView belowSubview:[view_2.subviews objectAtIndex:1]];
+    }
     [self.messageBarQueue addObject:messageView];
     
     if (!self.messageVisible)

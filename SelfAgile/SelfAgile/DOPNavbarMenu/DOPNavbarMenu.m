@@ -34,7 +34,7 @@
 @end
 
 static NSInteger rowHeight = 100;
-static CGFloat titleFontSize = 15.0;
+static CGFloat titleFontSize = 13.0;
 
 @interface DOPNavbarMenu ()
 
@@ -86,8 +86,9 @@ static CGFloat titleFontSize = 15.0;
         icon.contentMode =  UIViewContentModeScaleAspectFit;
         icon.center = CGPointMake(buttonWidth/2, buttonHeight/2-15);
         [button addSubview:icon];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, buttonHeight-35, buttonWidth, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, buttonHeight-35, buttonWidth, 40)];
         label.text = obj.title;
+        label.numberOfLines = 0;
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = self.textColor;
         label.font = [UIFont systemFontOfSize:titleFontSize];

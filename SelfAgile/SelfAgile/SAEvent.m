@@ -24,7 +24,7 @@ static DBManager *dbManager;
 {
     [self initDBManager];
     NSInteger index = [self getMaxIndex] + 1;
-    NSString *query = [NSString stringWithFormat:@"insert into Events(title,content,level,sprintNum,endDate,customIndex) values('%@','%@',%d,%d,'%@',%ld)",[event objectForKey:@"title"],[event objectForKey:@"content"],[[event objectForKey:@"level"] intValue],[[event objectForKey:@"sprintNum"] intValue],[event objectForKey:@"endDate"],index];
+    NSString *query = [NSString stringWithFormat:@"insert into Events(title,content,level,sprintNum,endDate,customIndex,points) values('%@','%@',%d,%d,'%@',%ld,%ld)",[event objectForKey:@"title"],[event objectForKey:@"content"],[[event objectForKey:@"level"] intValue],[[event objectForKey:@"sprintNum"] intValue],[event objectForKey:@"endDate"],index,[[event objectForKey:@"points"] integerValue]];
     [dbManager executeQuery:query];
     if (dbManager.affectedRows != 0) {
         NSLog(@"Save event successfully. Affected rows = %d", dbManager.affectedRows);

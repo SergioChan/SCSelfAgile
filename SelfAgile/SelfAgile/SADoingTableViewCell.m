@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UILabel *dueDateLabel;
 @property (nonatomic,strong) UILabel *dueDatePrefixLabel;
 @property (nonatomic,strong) UILabel *levelLabel;
+@property (nonatomic,strong) UILabel *pointLabel;
 @property (nonatomic,strong) UILabel *contentLabel;
 @end
 

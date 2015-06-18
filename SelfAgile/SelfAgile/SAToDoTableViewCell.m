@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UILabel *dueDateLabel;
 @property (nonatomic,strong) UILabel *dueDatePrefixLabel;
 @property (nonatomic,strong) UILabel *levelLabel;
+@property (nonatomic,strong) UILabel *pointLabel;
 @property (nonatomic,strong) UILabel *contentLabel;
 @end
 
@@ -49,6 +50,15 @@
     _titleLabel.textColor = [UIColor darkGrayColor];
     _titleLabel.numberOfLines = 0;
     [self.contentView addSubview:_titleLabel];
+    
+    _pointLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    _pointLabel.textAlignment = NSTextAlignmentCenter;
+    _pointLabel.font = [UIFont systemFontOfSize:10.0f];
+    _pointLabel.textColor = [UIColor whiteColor];
+    _pointLabel.backgroundColor = [UIColor customColorDefault];
+    _pointLabel.clipsToBounds = YES;
+    _pointLabel.layer.cornerRadius = 3.0f;
+    [self.contentView addSubview:_pointLabel];
     
     _dueDatePrefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     _dueDatePrefixLabel.text = ToDoDueDateLabelText;
@@ -89,8 +99,10 @@
     _titleLabel.frame = CGRectMake(10.0f, 15.0f, ScreenWidth - 20.0f, titleHeight);
     _titleLabel.text = [self.event objectForKey:@"title"];
     
+    _pointLabel.frame = CGRectMake(10.0f, _titleLabel.bottom + 10.0f, 15.0f, 15.0f);
+    
     CGFloat prefixWidth = [UIKitCustomUtils getTextWidthWithText:ToDoDueDateLabelText andMaxHeight:15.0f andFont:[UIFont systemFontOfSize:11.0f]];
-    _dueDatePrefixLabel.frame = CGRectMake(10.0f, _titleLabel.bottom + 10.0f, prefixWidth, 15.0f);
+    _dueDatePrefixLabel.frame = CGRectMake(_pointLabel.right + 3.0f, _titleLabel.bottom + 10.0f, prefixWidth, 15.0f);
     
     _dueDateLabel.frame = CGRectMake(_dueDatePrefixLabel.right, _titleLabel.bottom + 10.0f, 100.0f, 15.0f);
     _dueDateLabel.text = [self.event objectForKey:@"endDate"];
@@ -119,6 +131,7 @@
     }
     _levelLabel.frame = CGRectMake(ScreenWidth - 70.0f, _dueDateLabel.top, 70.0f, 15.0f);
     _levelLabel.text = levelText;
+    _pointLabel.text = [self.event objectForKey:@"points"];
     
     CGFloat contentHeight = [UIKitCustomUtils getTextHeightWithText:[self.event objectForKey:@"content"] andMaxWidth:ScreenWidth - 20.0f andFont:[UIFont systemFontOfSize:14.0f]];
     _contentLabel.frame = CGRectMake(10.0f, _dueDateLabel.bottom + 10.0f, ScreenWidth - 20.0f, contentHeight);

@@ -19,6 +19,7 @@
 #define titleTag 10002
 #define contentTag 10003
 #define levelTag 10004
+#define pointTag 10005
 
 #define ScreenBottomPadding 150.0f
 @interface CreateTableViewController () <UITextFieldDelegate,UITextViewDelegate,ResizeFrameDelegate,PickerViewReloadCellDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
@@ -26,9 +27,12 @@
 @property (nonatomic,strong) UITextField *titleInputView;
 @property (nonatomic,strong) UITextView *contentInputView;
 @property (nonatomic,strong) UITextField *levelInputView;
+@property (nonatomic,strong) UITextField *pointInputView;
 
 @property(nonatomic, strong) CusPickerView *cus;
 @property(nonatomic, strong) CusPickerView *cusLevel;
+@property(nonatomic, strong) CusPickerView *cusPoints;
+
 @end
 
 @implementation CreateTableViewController
@@ -39,11 +43,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor customColorDefault];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UITextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,6 +81,8 @@
     else if(indexPath.row == 3)
         return 60.0f;
     else if(indexPath.row == 4)
+        return 60.0f;
+    else if(indexPath.row == 5)
         return 20.0f;
     else
         return 0.0f;
@@ -94,7 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -230,6 +231,38 @@
             break;
         case 4:
         {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pointTableViewCell"];
+            if(!cell)
+            {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pointTableViewCell"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.contentView.backgroundColor = [UIColor whiteColor];
+                UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f,ScreenWidth , 2.0f)];
+                topLine.backgroundColor = [UIColor customColorDefault];
+                
+                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15.0f, 12.0f, 80.0f, 38.0f)];
+                titleLabel.text = @"Points";
+                titleLabel.textAlignment = NSTextAlignmentRight;
+                titleLabel.textColor = [UIColor customColorDefault];
+                titleLabel.font = [UIFont systemFontOfSize:15.0f];
+                
+                self.pointInputView = [[UITextField alloc]initWithFrame:CGRectMake(titleLabel.right + 10.0f, titleLabel.top, ScreenWidth - titleLabel.right - 25.0f, 38.0f)];
+                _pointInputView.tag = pointTag;
+                _pointInputView.delegate = self;
+                _pointInputView.borderStyle = UITextBorderStyleNone;
+                _pointInputView.placeholder = @"为您的任务估计一个点数";
+                _pointInputView.textColor = [UIColor lightGrayColor];
+                _pointInputView.font = [UIFont systemFontOfSize:15.0f];
+                
+                [cell.contentView addSubview:_pointInputView];
+                [cell.contentView addSubview:titleLabel];
+                [cell.contentView addSubview:topLine];
+            }
+            return cell;
+        }
+            break;
+        case 5:
+        {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DoneTableViewCell"];
             if(!cell)
             {
@@ -267,6 +300,11 @@
     {
         [_cusLevel hiddenView];
     }
+    
+    if(_cusPoints)
+    {
+        [_cusPoints hiddenView];
+    }
 }
 
 #pragma mark - UI Action
@@ -294,6 +332,7 @@
         self.dueDateInputView = nil;
         self.titleInputView = nil;
         self.contentInputView = nil;
+        self.pointInputView = nil;
         self.levelInputView = nil;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -406,6 +445,11 @@
             [_cusLevel hiddenView];
         }
         
+        if(_cusPoints)
+        {
+            [_cusPoints hiddenView];
+        }
+        
         [_cus showViewInSuperView:self.view];
         return NO;
     }
@@ -431,7 +475,42 @@
             [_cus hiddenView];
         }
         
+        if(_cusPoints)
+        {
+            [_cusPoints hiddenView];
+        }
+        
         [_cusLevel showViewInSuperView:self.view];
+        return NO;
+    }
+    else if(textField.tag == pointTag)
+    {
+        [textField resignFirstResponder];
+        [self.view endEditing:YES];
+        
+        NSMutableArray *options = [NSMutableArray arrayWithObjects:@"2",@"3",@"5",@"8",@"12",nil];
+        if(_cusPoints == nil)
+        {
+            _cusPoints = [[CusPickerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 250) andOptions:options andType:PickerTypeStandard andToolBarTitle:@""];
+            _cusPoints.delegate = self;
+            _cusPoints.resizeFrameDelegate = self;
+            [_cusPoints setTag:104];
+        }
+        NSUInteger index = [options indexOfObject:textField.text] == NSNotFound ? 0 : [options indexOfObject:textField.text];
+        
+        [(UIPickerView *)[_cusPoints viewWithTag:PickerViewTag] selectRow:index inComponent:0 animated:YES];
+        
+        if(_cus)
+        {
+            [_cus hiddenView];
+        }
+        
+        if(_cusLevel)
+        {
+            [_cusLevel hiddenView];
+        }
+        
+        [_cusPoints showViewInSuperView:self.view];
         return NO;
     }
     else
@@ -502,6 +581,10 @@
     else if(pickerView.tag == 103)
     {
         self.levelInputView.text = selectValue;
+    }
+    else if(pickerView.tag == 104)
+    {
+        self.pointInputView.text = selectValue;
     }
     else
     {

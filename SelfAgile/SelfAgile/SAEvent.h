@@ -68,4 +68,12 @@
 + (NSMutableArray *)getDoneEventList:(NSInteger)sprintNum;
 
 + (NSInteger)getMaxIndex;
+
++ (NSInteger)getCurrentSprintDonePointTotal:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintDoingPointTotal:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintTodoPointTotal:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintCardCount:(NSInteger)sprintNum;
 @end

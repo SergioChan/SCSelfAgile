@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>20B12EBC-4616-408E-90C4-16B30165297C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>SelfAgile</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</key>
 		<string>https://github.com/SergioChan/SelfAgile.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SelfAgile/SelfAgile.xcodeproj</string>
+	<string>SelfAgile/SelfAgile.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7218773A61B93F88C081FAEFC7EAC094AAAEF5CF</key>

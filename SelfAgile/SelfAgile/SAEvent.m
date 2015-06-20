@@ -134,4 +134,35 @@ static DBManager *dbManager;
     }
 }
 
++ (NSInteger)getCurrentSprintCardCount:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select count(*) as tmp from Events where sprintNum = %ld",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
++ (NSInteger)getCurrentSprintTodoPointTotal:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select sum(points) as tmp from Events where sprintNum = %ld and state = 0",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
++ (NSInteger)getCurrentSprintDoingPointTotal:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select sum(points) as tmp from Events where sprintNum = %ld and state = 1",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
++ (NSInteger)getCurrentSprintDonePointTotal:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select sum(points) as tmp from Events where sprintNum = %ld and state = 2",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
 @end

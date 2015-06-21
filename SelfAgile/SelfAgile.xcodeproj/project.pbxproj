@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22074DE91B369E23009227D7 /* OverViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22074DE81B369E23009227D7 /* OverViewTableViewController.m */; };
+		22074DEC1B369EEC009227D7 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22074DEB1B369EEC009227D7 /* HelpTableViewController.m */; };
+		22074DEF1B369EFB009227D7 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22074DEE1B369EFB009227D7 /* AboutTableViewController.m */; };
+		22074DF21B369F10009227D7 /* CreateSprintTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22074DF11B369F10009227D7 /* CreateSprintTableViewController.m */; };
 		221226C21B2AE2E80027EBD4 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 221226C11B2AE2E80027EBD4 /* UIViewExt.m */; };
 		221226C51B2AE5F20027EBD4 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 221226C41B2AE5F20027EBD4 /* UIColor+Custom.m */; };
 		221226C81B2AE98C0027EBD4 /* CreateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221226C71B2AE98C0027EBD4 /* CreateTableViewController.m */; };
@@ -85,6 +89,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22074DE71B369E23009227D7 /* OverViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverViewTableViewController.h; sourceTree = "<group>"; };
+		22074DE81B369E23009227D7 /* OverViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverViewTableViewController.m; sourceTree = "<group>"; };
+		22074DEA1B369EEC009227D7 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
+		22074DEB1B369EEC009227D7 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
+		22074DED1B369EFB009227D7 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		22074DEE1B369EFB009227D7 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		22074DF01B369F10009227D7 /* CreateSprintTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSprintTableViewController.h; sourceTree = "<group>"; };
+		22074DF11B369F10009227D7 /* CreateSprintTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSprintTableViewController.m; sourceTree = "<group>"; };
 		221226C01B2AE2E80027EBD4 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		221226C11B2AE2E80027EBD4 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		221226C31B2AE5F20027EBD4 /* UIColor+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
@@ -314,6 +326,14 @@
 				22C972361B27084D00B568FD /* MainViewController.m */,
 				221226C61B2AE98C0027EBD4 /* CreateTableViewController.h */,
 				221226C71B2AE98C0027EBD4 /* CreateTableViewController.m */,
+				22074DE71B369E23009227D7 /* OverViewTableViewController.h */,
+				22074DE81B369E23009227D7 /* OverViewTableViewController.m */,
+				22074DEA1B369EEC009227D7 /* HelpTableViewController.h */,
+				22074DEB1B369EEC009227D7 /* HelpTableViewController.m */,
+				22074DED1B369EFB009227D7 /* AboutTableViewController.h */,
+				22074DEE1B369EFB009227D7 /* AboutTableViewController.m */,
+				22074DF01B369F10009227D7 /* CreateSprintTableViewController.h */,
+				22074DF11B369F10009227D7 /* CreateSprintTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -630,8 +650,10 @@
 				22C9723E1B27094F00B568FD /* MentionPullToReactView.m in Sources */,
 				22C972A41B2712E900B568FD /* SAEvent.m in Sources */,
 				22F3F9941B284B82004E767E /* SBJson4Parser.m in Sources */,
+				22074DF21B369F10009227D7 /* CreateSprintTableViewController.m in Sources */,
 				22C9726B1B270AC500B568FD /* MNTPullToReactDefaultView.m in Sources */,
 				22F3F9821B284B13004E767E /* DictionaryJSONStringConvertor.m in Sources */,
+				22074DEF1B369EFB009227D7 /* AboutTableViewController.m in Sources */,
 				22C972371B27084D00B568FD /* MainViewController.m in Sources */,
 				22C9726E1B270AC500B568FD /* UIWebView+MNTPullToReact.m in Sources */,
 				22F3F99A1B284B82004E767E /* SBJson4Writer.m in Sources */,
@@ -649,10 +671,12 @@
 				226591581B2C1CCC000ABB2B /* UIKitCustomUtils.m in Sources */,
 				221226C21B2AE2E80027EBD4 /* UIViewExt.m in Sources */,
 				22AD72C41B30539F00910F87 /* DOPNavbarMenu.m in Sources */,
+				22074DE91B369E23009227D7 /* OverViewTableViewController.m in Sources */,
 				22C972231B2705E600B568FD /* DBManager.m in Sources */,
 				223FF2731B2B1C6200F9D40F /* NSDate+Helper.m in Sources */,
 				22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */,
 				22C972A01B27127900B568FD /* SAToDoTableViewCell.m in Sources */,
+				22074DEC1B369EEC009227D7 /* HelpTableViewController.m in Sources */,
 				22F3F9991B284B82004E767E /* SBJson4StreamWriterState.m in Sources */,
 				22F3F9981B284B82004E767E /* SBJson4StreamWriter.m in Sources */,
 				22C972261B2705ED00B568FD /* DBExecutingQueue.m in Sources */,

@@ -76,4 +76,10 @@
 + (NSInteger)getCurrentSprintTodoPointTotal:(NSInteger)sprintNum;
 
 + (NSInteger)getCurrentSprintCardCount:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintTodoCardCount:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintDoingCardCount:(NSInteger)sprintNum;
+
++ (NSInteger)getCurrentSprintDoneCardCount:(NSInteger)sprintNum;
 @end

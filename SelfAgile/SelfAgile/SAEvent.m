@@ -142,6 +142,30 @@ static DBManager *dbManager;
     return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
 }
 
++ (NSInteger)getCurrentSprintTodoCardCount:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select count(*) as tmp from Events where sprintNum = %ld and state = 0",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
++ (NSInteger)getCurrentSprintDoingCardCount:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select count(*) as tmp from Events where sprintNum = %ld and state = 1",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
++ (NSInteger)getCurrentSprintDoneCardCount:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select count(*) as tmp from Events where sprintNum = %ld and state = 2",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
 + (NSInteger)getCurrentSprintTodoPointTotal:(NSInteger)sprintNum
 {
     [self initDBManager];

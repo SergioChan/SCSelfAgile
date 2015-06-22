@@ -70,8 +70,14 @@
     self.numberOfItemsInRow = 3;
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"]== nil)
     {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:@"sprintNum"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"sprintNum"];
     }
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"sprintTitle"]== nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:@"基本迭代" forKey:@"sprintTitle"];
+    }
+    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
     [self.tableView addGestureRecognizer:longPress];
     
@@ -79,7 +85,9 @@
     self.doingData = [NSMutableArray array];
     self.doneData = [NSMutableArray array];
     
-    self.titleLabel.text = @"S#1:My First Sprint";
+    self.titleLabel.text = [NSString stringWithFormat:@"S#%ld:%@",[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue],[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintTitle"]];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
     _data = [NSMutableArray arrayWithArray:@[@"To do", @"Doing", @"Done"]];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor customColorDefault];
@@ -255,8 +263,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTranslucent:YES];
-    [self.navigationController.navigationBar setTintColor:[UIColor customColorDefault]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    self.navigationController.navigationBar.barTintColor = [UIColor customColorDefault];
     
     // Hide the shadow of navBar
     for (UIView *view in [[[self.navigationController.navigationBar subviews] objectAtIndex:0] subviews]) {
@@ -704,7 +712,25 @@
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    NSLog(@"fuck at%ld",index);
+    switch (index) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            [self performSegueWithIdentifier:@"OverViewSegue" sender:self];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 /*

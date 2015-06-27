@@ -97,11 +97,11 @@
     DoingLabel.backgroundColor = [UIColor clearColor];
     DoneLabel.backgroundColor = [UIColor clearColor];
     
-    UIView *seperatorView_1 = [[UIView alloc]initWithFrame:CGRectMake(ToDoLabel.width - 0.5f, 0.0f, 0.5f, ToDoLabel.height)];
+    UIView *seperatorView_1 = [[UIView alloc]initWithFrame:CGRectMake(ToDoLabel.width + 5.0f, 0.0f, 0.5f, ToDoLabel.height)];
     seperatorView_1.backgroundColor = [UIColor whiteColor];
     [ToDoLabel addSubview:seperatorView_1];
     
-    UIView *seperatorView_2 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 0.5f, DoneLabel.height)];
+    UIView *seperatorView_2 = [[UIView alloc]initWithFrame:CGRectMake(-5.0f, 0.0f, 0.5f, DoneLabel.height)];
     seperatorView_2.backgroundColor = [UIColor whiteColor];
     [DoneLabel addSubview:seperatorView_2];
     
@@ -152,7 +152,7 @@
         cell.backgroundColor = [UIColor whiteColor];
         UIView *seperatorView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, 5.0f)];
         seperatorView.backgroundColor = [UIColor customColorDefault];
-        UIView *seperatorView_1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 95.0f, ScreenWidth, 5.0f)];
+        UIView *seperatorView_1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 145.0f, ScreenWidth, 5.0f)];
         seperatorView_1.backgroundColor = [UIColor customColorDefault];
         [cell.contentView addSubview:seperatorView];
         [cell.contentView addSubview:seperatorView_1];

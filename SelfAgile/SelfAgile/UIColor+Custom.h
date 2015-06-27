@@ -14,4 +14,5 @@
 + (UIColor *)customColorDefault;
 + (UIColor *)customColorYellow;
 + (UIColor *)customColorRed;
++ (UIColor *)customColorGreen;
 @end

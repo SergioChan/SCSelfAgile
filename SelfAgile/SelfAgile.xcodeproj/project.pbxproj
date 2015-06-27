@@ -59,6 +59,7 @@
 		22C972A41B2712E900B568FD /* SAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A31B2712E900B568FD /* SAEvent.m */; };
 		22C972A71B27130500B568FD /* SADoingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A61B27130500B568FD /* SADoingTableViewCell.m */; };
 		22C972AA1B27131000B568FD /* SADoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C972A91B27131000B568FD /* SADoneTableViewCell.m */; };
+		22DDC1DB1B3EFD8B009CC542 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DDC1DA1B3EFD8B009CC542 /* UINavigationBar+Awesome.m */; };
 		22EA913F1B2C84A100BE3CA7 /* LBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EA913E1B2C84A100BE3CA7 /* LBorderView.m */; };
 		22EA91421B2D0AC500BE3CA7 /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EA91411B2D0AC500BE3CA7 /* TWMessageBarManager.m */; };
 		22EA91491B2D0AD600BE3CA7 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EA91431B2D0AD600BE3CA7 /* icon-error.png */; };
@@ -182,6 +183,8 @@
 		22C972A61B27130500B568FD /* SADoingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoingTableViewCell.m; sourceTree = "<group>"; };
 		22C972A81B27131000B568FD /* SADoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADoneTableViewCell.h; sourceTree = "<group>"; };
 		22C972A91B27131000B568FD /* SADoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADoneTableViewCell.m; sourceTree = "<group>"; };
+		22DDC1D91B3EFD8B009CC542 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		22DDC1DA1B3EFD8B009CC542 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		22EA913D1B2C84A100BE3CA7 /* LBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBorderView.h; sourceTree = "<group>"; };
 		22EA913E1B2C84A100BE3CA7 /* LBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBorderView.m; sourceTree = "<group>"; };
 		22EA91401B2D0AC500BE3CA7 /* TWMessageBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWMessageBarManager.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 		22C972201B2705DA00B568FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				22DDC1D91B3EFD8B009CC542 /* UINavigationBar+Awesome.h */,
+				22DDC1DA1B3EFD8B009CC542 /* UINavigationBar+Awesome.m */,
 				22EA91501B2D0B3400BE3CA7 /* NSDateExtension */,
 				22EA914F1B2D0B1F00BE3CA7 /* UIColorExtension */,
 				226591561B2C1CCC000ABB2B /* UIKitCustomUtils.h */,
@@ -658,6 +663,7 @@
 				22C9726E1B270AC500B568FD /* UIWebView+MNTPullToReact.m in Sources */,
 				22F3F99A1B284B82004E767E /* SBJson4Writer.m in Sources */,
 				223FF26D1B2B1A7900F9D40F /* CusPickerView.m in Sources */,
+				22DDC1DB1B3EFD8B009CC542 /* UINavigationBar+Awesome.m in Sources */,
 				22C9726C1B270AC500B568FD /* MNTPullToReactView.m in Sources */,
 				22F3F9971B284B82004E767E /* SBJson4StreamTokeniser.m in Sources */,
 				221226C51B2AE5F20027EBD4 /* UIColor+Custom.m in Sources */,

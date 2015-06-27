@@ -29,4 +29,9 @@
 {
     return [UIColor colorWithHexString:@"EE2C2C"];
 }
+
++ (UIColor *)customColorGreen
+{
+    return [UIColor colorWithHexString:@"228B22"];
+}
 @end

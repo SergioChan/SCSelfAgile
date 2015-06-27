@@ -14,6 +14,7 @@
 #import "NSDate+Helper.h"
 #import "SAEvent.h"
 #import "TWMessageBarManager.h"
+#import "UINavigationBar+Awesome.h"
 
 #define duedateTag 10001
 #define titleTag 10002
@@ -53,8 +54,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTranslucent:NO];
-    self.navigationController.navigationBar.barTintColor = [UIColor customColorDefault];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor customColorDefault]];
+    //self.navigationController.navigationBar.barTintColor = [UIColor customColorDefault];
     
     // Hide the shadow of navBar
     for (UIView *view in [[[self.navigationController.navigationBar subviews] objectAtIndex:0] subviews]) {

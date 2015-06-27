@@ -55,7 +55,7 @@
     _pointLabel.textAlignment = NSTextAlignmentCenter;
     _pointLabel.font = [UIFont systemFontOfSize:10.0f];
     _pointLabel.textColor = [UIColor whiteColor];
-    _pointLabel.backgroundColor = [UIColor customColorDefault];
+    _pointLabel.backgroundColor = [UIColor customColorGreen];
     _pointLabel.clipsToBounds = YES;
     _pointLabel.layer.cornerRadius = 3.0f;
     [self.contentView addSubview:_pointLabel];

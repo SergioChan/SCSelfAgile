@@ -17,4 +17,6 @@
 #define MenuHelpText @"怎么用SelfAgile"
 #define MenuOverviewText @"当前迭代Overview"
 #define MenuAboutText @"关于SelfAgile"
+
+#define DefaultNumberFont @"Helvetica-Light"
 #endif

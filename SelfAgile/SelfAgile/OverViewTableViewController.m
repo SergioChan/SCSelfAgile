@@ -11,6 +11,7 @@
 #import "UIColor+Custom.h"
 #import "SAEvent.h"
 #import "UIViewExt.h"
+#import "StringConstant.h"
 
 @interface OverViewTableViewController ()
 
@@ -90,9 +91,9 @@
     sprintTitleLabel.textColor = [UIColor whiteColor];
     sprintTitleLabel.textAlignment = NSTextAlignmentCenter;
     
-    UIView *ToDoLabel = [[UIView alloc]initWithFrame:CGRectMake(15.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 100.0f)];
-    UIView *DoingLabel = [[UIView alloc]initWithFrame:CGRectMake(ToDoLabel.right + 10.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 100.0f)];
-    UIView *DoneLabel = [[UIView alloc]initWithFrame:CGRectMake(DoingLabel.right + 10.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 100.0f)];
+    UIView *ToDoLabel = [[UIView alloc]initWithFrame:CGRectMake(15.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 120.0f)];
+    UIView *DoingLabel = [[UIView alloc]initWithFrame:CGRectMake(ToDoLabel.right + 10.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 120.0f)];
+    UIView *DoneLabel = [[UIView alloc]initWithFrame:CGRectMake(DoingLabel.right + 10.0f, sprintTitleLabel.bottom + 10.0f, (ScreenWidth - 50.0f)/3.0f, 120.0f)];
     ToDoLabel.backgroundColor = [UIColor clearColor];
     DoingLabel.backgroundColor = [UIColor clearColor];
     DoneLabel.backgroundColor = [UIColor clearColor];
@@ -105,6 +106,7 @@
     seperatorView_2.backgroundColor = [UIColor whiteColor];
     [DoneLabel addSubview:seperatorView_2];
     
+    //title label for todo
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(((ScreenWidth - 50.0f)/3.0f - 50.0f)/2.0f, 5.0f, 50.0f, 15.0f)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
@@ -112,6 +114,52 @@
     titleLabel.text = @"未完成";
     [ToDoLabel addSubview:titleLabel];
     
+    //card number label for todo
+    UILabel *todoCardNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, titleLabel.bottom + 10.0f, ToDoLabel.width, 50.0f)];
+    todoCardNumberLabel.textColor = [UIColor whiteColor];
+    todoCardNumberLabel.textAlignment = NSTextAlignmentCenter;
+    todoCardNumberLabel.font = [UIFont fontWithName:DefaultNumberFont size:50.0f];
+    NSString *numberToShow = @"0";
+    NSInteger tmp_numberToShow = [SAEvent getCurrentSprintTodoCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow >= 100)
+    {
+        numberToShow = @"99+";
+    }
+    else
+    {
+        numberToShow = [NSString stringWithFormat:@"%ld",tmp_numberToShow];
+    }
+    
+    todoCardNumberLabel.text = numberToShow;
+    [ToDoLabel addSubview:todoCardNumberLabel];
+    
+    UILabel *todoCardPointLabel = [[UILabel alloc]initWithFrame:CGRectMake((ToDoLabel.width - 70.0f)/2.0f, todoCardNumberLabel.bottom + 10.0f, 70.0f, 30.0f)];
+    todoCardPointLabel.textAlignment = NSTextAlignmentCenter;
+    todoCardPointLabel.font = [UIFont fontWithName:DefaultNumberFont size:25.0f];
+    todoCardPointLabel.textColor = [UIColor whiteColor];
+    todoCardPointLabel.backgroundColor = [UIColor customColorGreen];
+    todoCardPointLabel.clipsToBounds = YES;
+    todoCardPointLabel.layer.cornerRadius = 6.0f;
+    
+    //todo point -----------------------------------
+    NSString *numberToShow_todoPoint = @"0";
+    NSInteger tmp_numberToShow_todoPoint = [SAEvent getCurrentSprintTodoPointTotal:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_todoPoint >= 1000)
+    {
+        numberToShow_todoPoint = @"999+";
+    }
+    else
+    {
+        numberToShow_todoPoint = [NSString stringWithFormat:@"%ld",tmp_numberToShow_todoPoint];
+    }
+    todoCardPointLabel.text = numberToShow_todoPoint;
+    //-----------------------------------
+    
+    [ToDoLabel addSubview:todoCardPointLabel];
+    
+    //title label for doing
     UILabel *titleLabel_2 = [[UILabel alloc]initWithFrame:CGRectMake(((ScreenWidth - 50.0f)/3.0f - 50.0f)/2.0f, 5.0f, 50.0f, 15.0f)];
     titleLabel_2.textAlignment = NSTextAlignmentCenter;
     titleLabel_2.textColor = [UIColor whiteColor];
@@ -119,6 +167,52 @@
     titleLabel_2.text = @"进行中";
     [DoingLabel addSubview:titleLabel_2];
     
+    //card number label for doing
+    UILabel *doingCardNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, titleLabel_2.bottom + 10.0f, DoingLabel.width, 50.0f)];
+    doingCardNumberLabel.textColor = [UIColor whiteColor];
+    doingCardNumberLabel.textAlignment = NSTextAlignmentCenter;
+    doingCardNumberLabel.font = [UIFont fontWithName:DefaultNumberFont size:50.0f];
+    NSString *numberToShow_2 = @"0";
+    NSInteger tmp_numberToShow_2 = [SAEvent getCurrentSprintDoingCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_2 >= 100)
+    {
+        numberToShow_2 = @"99+";
+    }
+    else
+    {
+        numberToShow_2 = [NSString stringWithFormat:@"%ld",tmp_numberToShow_2];
+    }
+    
+    doingCardNumberLabel.text = numberToShow_2;
+    [DoingLabel addSubview:doingCardNumberLabel];
+    
+    UILabel *doingCardPointLabel = [[UILabel alloc]initWithFrame:CGRectMake((ToDoLabel.width - 70.0f)/2.0f, todoCardNumberLabel.bottom + 10.0f, 70.0f, 30.0f)];
+    doingCardPointLabel.textAlignment = NSTextAlignmentCenter;
+    doingCardPointLabel.font = [UIFont fontWithName:DefaultNumberFont size:25.0f];
+    doingCardPointLabel.textColor = [UIColor whiteColor];
+    doingCardPointLabel.backgroundColor = [UIColor customColorGreen];
+    doingCardPointLabel.clipsToBounds = YES;
+    doingCardPointLabel.layer.cornerRadius = 6.0f;
+    
+    //doing point -----------------------------------
+    NSString *numberToShow_doingPoint = @"0";
+    NSInteger tmp_numberToShow_doingPoint = [SAEvent getCurrentSprintDoingPointTotal:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_doingPoint >= 1000)
+    {
+        numberToShow_doingPoint = @"999+";
+    }
+    else
+    {
+        numberToShow_doingPoint = [NSString stringWithFormat:@"%ld",tmp_numberToShow_doingPoint];
+    }
+    doingCardPointLabel.text = numberToShow_doingPoint;
+    //-----------------------------------
+    
+    [DoingLabel addSubview:doingCardPointLabel];
+    
+    //title label for done
     UILabel *titleLabel_3 = [[UILabel alloc]initWithFrame:CGRectMake(((ScreenWidth - 50.0f)/3.0f - 50.0f)/2.0f, 5.0f, 50.0f, 15.0f)];
     titleLabel_3.textAlignment = NSTextAlignmentCenter;
     titleLabel_3.textColor = [UIColor whiteColor];
@@ -126,10 +220,63 @@
     titleLabel_3.text = @"已完成";
     [DoneLabel addSubview:titleLabel_3];
     
+    //card number label for done
+    UILabel *doneCardNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, titleLabel_3.bottom + 10.0f, DoneLabel.width, 50.0f)];
+    doneCardNumberLabel.textColor = [UIColor whiteColor];
+    doneCardNumberLabel.textAlignment = NSTextAlignmentCenter;
+    doneCardNumberLabel.font = [UIFont fontWithName:DefaultNumberFont size:50.0f];
+    NSString *numberToShow_3 = @"0";
+    NSInteger tmp_numberToShow_3 = [SAEvent getCurrentSprintDoneCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_3 >= 100)
+    {
+        numberToShow_3 = @"99+";
+    }
+    else
+    {
+        numberToShow_3 = [NSString stringWithFormat:@"%ld",tmp_numberToShow_3];
+    }
+    
+    doneCardNumberLabel.text = numberToShow_3;
+    [DoneLabel addSubview:doneCardNumberLabel];
+    
+    UILabel *doneCardPointLabel = [[UILabel alloc]initWithFrame:CGRectMake((ToDoLabel.width - 70.0f)/2.0f, todoCardNumberLabel.bottom + 10.0f, 70.0f, 30.0f)];
+    doneCardPointLabel.textAlignment = NSTextAlignmentCenter;
+    doneCardPointLabel.font = [UIFont fontWithName:DefaultNumberFont size:25.0f];
+    doneCardPointLabel.textColor = [UIColor whiteColor];
+    doneCardPointLabel.backgroundColor = [UIColor customColorGreen];
+    doneCardPointLabel.clipsToBounds = YES;
+    doneCardPointLabel.layer.cornerRadius = 6.0f;
+    
+    //done point -----------------------------------
+    NSString *numberToShow_donePoint = @"0";
+    NSInteger tmp_numberToShow_donePoint = [SAEvent getCurrentSprintDonePointTotal:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_donePoint >= 1000)
+    {
+        numberToShow_donePoint = @"999+";
+    }
+    else
+    {
+        numberToShow_donePoint = [NSString stringWithFormat:@"%ld",tmp_numberToShow_donePoint];
+    }
+    doneCardPointLabel.text = numberToShow_donePoint;
+    //-----------------------------------
+    
+    [DoneLabel addSubview:doneCardPointLabel];
+    
     [scoreHeaderView addSubview:sprintTitleLabel];
     [scoreHeaderView addSubview:ToDoLabel];
     [scoreHeaderView addSubview:DoingLabel];
     [scoreHeaderView addSubview:DoneLabel];
+    
+    UILabel *titleLabel_total = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, ToDoLabel.bottom + 10.0f, ScreenWidth, 15.0f)];
+    titleLabel_total.textAlignment = NSTextAlignmentCenter;
+    titleLabel_total.textColor = [UIColor whiteColor];
+    titleLabel_total.font = [UIFont boldSystemFontOfSize:14.0f];
+    titleLabel_total.text = @"总共";
+    [scoreHeaderView addSubview:titleLabel_total];
+    
     return scoreHeaderView;
 }
 

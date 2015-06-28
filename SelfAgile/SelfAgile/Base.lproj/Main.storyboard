@@ -72,8 +72,8 @@
                         <outlet property="loadingIndicator" destination="Qbk-I8-biJ" id="bkL-e3-CPd"/>
                         <outlet property="titleBackgroundView" destination="2fV-FL-Zub" id="f0i-L9-Vi1"/>
                         <outlet property="titleLabel" destination="2kR-OL-lmi" id="g4k-g9-o4v"/>
-                        <segue destination="8k3-SE-uK2" kind="modal" identifier="CreateNewEvent" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="hKi-yk-sZ3"/>
-                        <segue destination="iJd-X8-u8K" kind="modal" identifier="OverViewSegue" id="1hh-1t-Fwj"/>
+                        <segue destination="8k3-SE-uK2" kind="modal" identifier="CreateNewEvent" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="hKi-yk-sZ3"/>
+                        <segue destination="iJd-X8-u8K" kind="modal" identifier="OverViewSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="1hh-1t-Fwj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Zp-iC-xDm" userLabel="First Responder" sceneMemberID="firstResponder"/>

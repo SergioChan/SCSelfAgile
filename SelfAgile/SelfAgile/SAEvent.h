@@ -69,6 +69,8 @@
 
 + (NSInteger)getMaxIndex;
 
++ (NSInteger)getCurrentSprintPointTotal:(NSInteger)sprintNum;
+
 + (NSInteger)getCurrentSprintDonePointTotal:(NSInteger)sprintNum;
 
 + (NSInteger)getCurrentSprintDoingPointTotal:(NSInteger)sprintNum;

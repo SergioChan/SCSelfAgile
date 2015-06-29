@@ -72,7 +72,7 @@
 {
     if(section == 0)
     {
-        return 300.0f;
+        return 400.0f;
     }
     else
     {
@@ -270,13 +270,70 @@
     [scoreHeaderView addSubview:DoingLabel];
     [scoreHeaderView addSubview:DoneLabel];
     
+    // total titleLabel -----------------------------------
     UILabel *titleLabel_total = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, ToDoLabel.bottom + 10.0f, ScreenWidth, 15.0f)];
     titleLabel_total.textAlignment = NSTextAlignmentCenter;
     titleLabel_total.textColor = [UIColor whiteColor];
     titleLabel_total.font = [UIFont boldSystemFontOfSize:14.0f];
     titleLabel_total.text = @"总共";
     [scoreHeaderView addSubview:titleLabel_total];
+    // -----------------------------------
     
+    // total card number Label -----------------------------------
+    UILabel *CardNumberLabel_total = [[UILabel alloc]initWithFrame:CGRectMake((ScreenWidth - 140.0f)/2.0f, titleLabel_total.bottom + 10.0f, 140.0f, 50.0f)];
+    CardNumberLabel_total.textColor = [UIColor whiteColor];
+    CardNumberLabel_total.textAlignment = NSTextAlignmentCenter;
+    CardNumberLabel_total.font = [UIFont fontWithName:DefaultNumberFont size:50.0f];
+    NSString *numberToShow_total = @"0";
+    NSInteger tmp_numberToShow_total = [SAEvent getCurrentSprintCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_total >= 1000)
+    {
+        numberToShow_total = @"999+";
+    }
+    else
+    {
+        numberToShow_total = [NSString stringWithFormat:@"%ld",tmp_numberToShow_total];
+    }
+    
+    CardNumberLabel_total.text = @"999+";//numberToShow_total;
+    [scoreHeaderView addSubview:CardNumberLabel_total];
+    
+    // -----------------------------------
+    UILabel *CardNumberTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CardNumberLabel_total.right + 20.0f, CardNumberLabel_total.bottom - 6.0f - CardNumberLabel_total.height / 2.0f, 37.0f, 12.0f)];
+    CardNumberTitleLabel.textAlignment = NSTextAlignmentCenter;
+    CardNumberTitleLabel.font = [UIFont fontWithName:DefaultNumberFont size:12.0f];
+    CardNumberTitleLabel.textColor = [UIColor whiteColor];
+    CardNumberTitleLabel.backgroundColor = [UIColor clearColor];
+    CardNumberTitleLabel.text = @"卡片数";
+    
+    [scoreHeaderView addSubview:CardNumberTitleLabel];
+
+    UILabel *CardPointLabel_total = [[UILabel alloc]initWithFrame:CGRectMake((ScreenWidth - 70.0f)/2.0f, CardNumberLabel_total.bottom + 10.0f, 70.0f, 30.0f)];
+    CardPointLabel_total.textAlignment = NSTextAlignmentCenter;
+    CardPointLabel_total.font = [UIFont fontWithName:DefaultNumberFont size:25.0f];
+    CardPointLabel_total.textColor = [UIColor whiteColor];
+    CardPointLabel_total.backgroundColor = [UIColor customColorGreen];
+    CardPointLabel_total.clipsToBounds = YES;
+    CardPointLabel_total.layer.cornerRadius = 6.0f;
+    
+    //done point -----------------------------------
+    NSString *numberToShow_total_point = @"0";
+    NSInteger tmp_numberToShow_total_point = [SAEvent getCurrentSprintPointTotal:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] integerValue]];
+    
+    if(tmp_numberToShow_total_point >= 1000)
+    {
+        numberToShow_total_point = @"999+";
+    }
+    else
+    {
+        numberToShow_total_point = [NSString stringWithFormat:@"%ld",tmp_numberToShow_total_point];
+    }
+    CardPointLabel_total.text = numberToShow_total_point;
+    //-----------------------------------
+    
+    [scoreHeaderView addSubview:CardPointLabel_total];
+
     return scoreHeaderView;
 }
 

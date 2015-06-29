@@ -166,6 +166,14 @@ static DBManager *dbManager;
     return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
 }
 
++ (NSInteger)getCurrentSprintPointTotal:(NSInteger)sprintNum
+{
+    [self initDBManager];
+    NSString *query = [NSString stringWithFormat:@"select sum(points) as tmp from Events where sprintNum = %ld",sprintNum];
+    NSArray *result = [dbManager loadDataFromDB:query];
+    return [[[result objectAtIndex:0] objectForKey:@"tmp"] integerValue];
+}
+
 + (NSInteger)getCurrentSprintTodoPointTotal:(NSInteger)sprintNum
 {
     [self initDBManager];

@@ -296,7 +296,7 @@
         numberToShow_total = [NSString stringWithFormat:@"%ld",tmp_numberToShow_total];
     }
     
-    CardNumberLabel_total.text = @"999+";//numberToShow_total;
+    CardNumberLabel_total.text = numberToShow_total;
     [scoreHeaderView addSubview:CardNumberLabel_total];
     
     // -----------------------------------
@@ -333,7 +333,34 @@
     //-----------------------------------
     
     [scoreHeaderView addSubview:CardPointLabel_total];
-
+    
+    UILabel *CardPointTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CardNumberTitleLabel.left, CardPointLabel_total.bottom - 6.0f - CardPointLabel_total.height / 2.0f, 48.0f, 12.0f)];
+    CardPointTitleLabel.textAlignment = NSTextAlignmentCenter;
+    CardPointTitleLabel.font = [UIFont fontWithName:DefaultNumberFont size:12.0f];
+    CardPointTitleLabel.textColor = [UIColor whiteColor];
+    CardPointTitleLabel.backgroundColor = [UIColor clearColor];
+    CardPointTitleLabel.text = @"任务点数";
+    
+    [scoreHeaderView addSubview:CardPointTitleLabel];
+    
+    CGFloat total =[SAEvent getCurrentSprintCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] floatValue]];
+    CGFloat todo_tmp = [SAEvent getCurrentSprintTodoCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] floatValue]];
+    CGFloat doing_tmp = [SAEvent getCurrentSprintDoingCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] floatValue]];
+    
+    CGFloat progressWidth = ScreenWidth;
+    NSLog(@"fuck:%f",(todo_tmp/total));
+    
+    UIView *white_seperator_line_view = [[UIView alloc]initWithFrame:CGRectMake(0.0f, CardPointLabel_total.bottom + 14.0f, ScreenWidth, 1.0f)];
+    white_seperator_line_view.backgroundColor = [UIColor whiteColor];
+    [scoreHeaderView addSubview:white_seperator_line_view];
+    
+    UIView *progressView_todo = [[UIView alloc]initWithFrame:CGRectMake(0.0f, CardPointLabel_total.bottom + 15.0f, (todo_tmp/total)*progressWidth, 25.0f)];
+    progressView_todo.backgroundColor = [UIColor customColorRed];
+    UIView *progressView_doing = [[UIView alloc]initWithFrame:CGRectMake(progressView_todo.right, progressView_todo.top, (doing_tmp/total)*progressWidth, 25.0f)];
+    progressView_doing.backgroundColor = [UIColor customColorYellow];
+    
+    [scoreHeaderView addSubview:progressView_todo];
+    [scoreHeaderView addSubview:progressView_doing];
     return scoreHeaderView;
 }
 

@@ -72,7 +72,7 @@
 {
     if(section == 0)
     {
-        return 400.0f;
+        return 450.0f;
     }
     else
     {
@@ -347,21 +347,75 @@
     CGFloat todo_tmp = [SAEvent getCurrentSprintTodoCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] floatValue]];
     CGFloat doing_tmp = [SAEvent getCurrentSprintDoingCardCount:[[[NSUserDefaults standardUserDefaults] objectForKey:@"sprintNum"] floatValue]];
     
-    CGFloat progressWidth = ScreenWidth;
-    NSLog(@"fuck:%f",(todo_tmp/total));
+    CGFloat progressWidth = ScreenWidth - 130.0f;
+    NSLog(@"fuck:%.2f",(todo_tmp/total)*100);
     
-    UIView *white_seperator_line_view = [[UIView alloc]initWithFrame:CGRectMake(0.0f, CardPointLabel_total.bottom + 14.0f, ScreenWidth, 1.0f)];
-    white_seperator_line_view.backgroundColor = [UIColor whiteColor];
-    [scoreHeaderView addSubview:white_seperator_line_view];
+    UIView *progressView_todo = [[UIView alloc]initWithFrame:CGRectMake(68.0f, CardPointLabel_total.bottom + 15.0f, MAX((todo_tmp/total)*progressWidth,3.0f), 25.0f)];
+    progressView_todo.backgroundColor = [UIColor whiteColor];
+    UILabel *progressView_todo_title = [[UILabel alloc]initWithFrame:CGRectMake(15.0f, progressView_todo.top, 50.0f, 25.0f)];
+    progressView_todo_title.text = @"未完成";
+    progressView_todo_title.textColor = [UIColor whiteColor];
+    progressView_todo_title.font = [UIFont systemFontOfSize:12.0f];
+    progressView_todo_title.textAlignment = NSTextAlignmentRight;
     
-    UIView *progressView_todo = [[UIView alloc]initWithFrame:CGRectMake(0.0f, CardPointLabel_total.bottom + 15.0f, (todo_tmp/total)*progressWidth, 25.0f)];
-    progressView_todo.backgroundColor = [UIColor customColorRed];
-    UIView *progressView_doing = [[UIView alloc]initWithFrame:CGRectMake(progressView_todo.right, progressView_todo.top, (doing_tmp/total)*progressWidth, 25.0f)];
-    progressView_doing.backgroundColor = [UIColor customColorYellow];
+    UILabel *progressView_todo_label = [[UILabel alloc]initWithFrame:CGRectMake(progressView_todo.right + 3.0f, progressView_todo.top, 50.0f, 25.0f)];
+    progressView_todo_label.text = [NSString stringWithFormat:@"%d%%",(int)((todo_tmp/total)*100)];
+    progressView_todo_label.textColor = [UIColor whiteColor];
+    progressView_todo_label.font = [UIFont systemFontOfSize:20.0f];
     
+    UIView *progressView_doing = [[UIView alloc]initWithFrame:CGRectMake(68.0f, progressView_todo.bottom + 5.0f, MAX((doing_tmp/total)*progressWidth,3.0f), 25.0f)];
+    progressView_doing.backgroundColor = [UIColor whiteColor];
+    UILabel *progressView_doing_title = [[UILabel alloc]initWithFrame:CGRectMake(15.0f, progressView_doing.top, 50.0f, 25.0f)];
+    progressView_doing_title.text = @"正在进行";
+    progressView_doing_title.textColor = [UIColor whiteColor];
+    progressView_doing_title.font = [UIFont systemFontOfSize:12.0f];
+    progressView_doing_title.textAlignment = NSTextAlignmentRight;
+    
+    UILabel *progressView_doing_label = [[UILabel alloc]initWithFrame:CGRectMake(progressView_doing.right + 3.0f, progressView_doing.top, 50.0f, 25.0f)];
+    progressView_doing_label.text = [NSString stringWithFormat:@"%d%%",(int)((doing_tmp/total)*100)];
+    progressView_doing_label.textColor = [UIColor whiteColor];
+    progressView_doing_label.font = [UIFont systemFontOfSize:20.0f];
+    
+    UIView *progressView_done = [[UIView alloc]initWithFrame:CGRectMake(68.0f, progressView_doing.bottom + 5.0f, MAX(((total - todo_tmp - doing_tmp)/total)*progressWidth,3.0f), 25.0f)];
+    progressView_done.backgroundColor = [UIColor whiteColor];
+    UILabel *progressView_done_title = [[UILabel alloc]initWithFrame:CGRectMake(15.0f, progressView_done.top, 50.0f, 25.0f)];
+    progressView_done_title.text = @"已完成";
+    progressView_done_title.textColor = [UIColor whiteColor];
+    progressView_done_title.font = [UIFont systemFontOfSize:12.0f];
+    progressView_done_title.textAlignment = NSTextAlignmentRight;
+    
+    UILabel *progressView_done_label = [[UILabel alloc]initWithFrame:CGRectMake(progressView_done.right + 3.0f, progressView_done.top, 50.0f, 25.0f)];
+    progressView_done_label.text = [NSString stringWithFormat:@"%d%%",(int)(((total - todo_tmp - doing_tmp)/total)*100)];
+    progressView_done_label.textColor = [UIColor whiteColor];
+    progressView_done_label.font = [UIFont systemFontOfSize:20.0f];
+    
+    [scoreHeaderView addSubview:progressView_doing_title];
+    [scoreHeaderView addSubview:progressView_done_title];
+    [scoreHeaderView addSubview:progressView_todo_title];
+    [scoreHeaderView addSubview:progressView_doing_label];
+    [scoreHeaderView addSubview:progressView_done_label];
+    [scoreHeaderView addSubview:progressView_todo_label];
     [scoreHeaderView addSubview:progressView_todo];
     [scoreHeaderView addSubview:progressView_doing];
+    [scoreHeaderView addSubview:progressView_done];
+    
+    UIButton *endSprintBtn = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, progressView_done_label.bottom + 15.0f, ScreenWidth - 20.0f, 40.0f)];
+    [endSprintBtn setTitle:@"结束这个迭代" forState:UIControlStateNormal];
+    [endSprintBtn setTitleColor:[UIColor customColorRed] forState:UIControlStateNormal];
+    [endSprintBtn setBackgroundColor:[UIColor whiteColor]];
+    [endSprintBtn addTarget:self action:@selector(endCurrentSprint) forControlEvents:UIControlEventTouchUpInside];
+    endSprintBtn.layer.borderWidth = 1.0f;
+    endSprintBtn.layer.borderColor = [[UIColor customColorRed] CGColor];
+    endSprintBtn.clipsToBounds = YES;
+    endSprintBtn.layer.cornerRadius = 6.0f;
+    
+    [scoreHeaderView addSubview:endSprintBtn];
     return scoreHeaderView;
+}
+
+- (void)endCurrentSprint
+{
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

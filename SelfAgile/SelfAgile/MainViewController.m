@@ -7,6 +7,8 @@
 //
 
 #import "MainViewController.h"
+#import "CreateSprintTableViewController.h"
+
 #import "PullToReact.h"
 #import "MentionPullToReactView.h"
 #import "UITableView+Helper.h"
@@ -77,6 +79,9 @@
     {
         [[NSUserDefaults standardUserDefaults] setObject:@"基本迭代" forKey:@"sprintTitle"];
     }
+    
+    CreateSprintTableViewController *createSprintVC = [[CreateSprintTableViewController alloc]init];
+    [self.navigationController pushViewController:createSprintVC animated:YES];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
     [self.tableView addGestureRecognizer:longPress];

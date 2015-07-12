@@ -72,7 +72,7 @@
 {
     if(section == 0)
     {
-        return 450.0f;
+        return 440.0f;
     }
     else
     {
@@ -401,11 +401,13 @@
     
     UIButton *endSprintBtn = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, progressView_done_label.bottom + 15.0f, ScreenWidth - 20.0f, 40.0f)];
     [endSprintBtn setTitle:@"结束这个迭代" forState:UIControlStateNormal];
+    [endSprintBtn setTitle:@"确定就这么结束么?" forState:UIControlStateHighlighted];
+    
+    endSprintBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [endSprintBtn setTitleColor:[UIColor customColorRed] forState:UIControlStateNormal];
+    
     [endSprintBtn setBackgroundColor:[UIColor whiteColor]];
     [endSprintBtn addTarget:self action:@selector(endCurrentSprint) forControlEvents:UIControlEventTouchUpInside];
-    endSprintBtn.layer.borderWidth = 1.0f;
-    endSprintBtn.layer.borderColor = [[UIColor customColorRed] CGColor];
     endSprintBtn.clipsToBounds = YES;
     endSprintBtn.layer.cornerRadius = 6.0f;
     
@@ -425,7 +427,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 2;
+    return 0;
 }
 
 

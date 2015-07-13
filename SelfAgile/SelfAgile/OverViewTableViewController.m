@@ -350,7 +350,7 @@
     CGFloat progressWidth = ScreenWidth - 130.0f;
     NSLog(@"fuck:%.2f",(todo_tmp/total)*100);
     
-    UIView *progressView_todo = [[UIView alloc]initWithFrame:CGRectMake(68.0f, CardPointLabel_total.bottom + 15.0f, MAX((todo_tmp/total)*progressWidth,3.0f), 25.0f)];
+    UIView *progressView_todo = [[UIView alloc]initWithFrame:CGRectMake(68.0f, CardPointLabel_total.bottom + 25.0f, MAX((todo_tmp/total)*progressWidth,3.0f), 25.0f)];
     progressView_todo.backgroundColor = [UIColor whiteColor];
     UILabel *progressView_todo_title = [[UILabel alloc]initWithFrame:CGRectMake(15.0f, progressView_todo.top, 50.0f, 25.0f)];
     progressView_todo_title.text = @"未完成";

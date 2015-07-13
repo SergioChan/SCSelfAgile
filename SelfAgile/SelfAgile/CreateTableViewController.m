@@ -363,7 +363,7 @@
             levelValue = [NSNumber numberWithInt:0];
         }
         
-        NSDictionary *eventData = [NSDictionary dictionaryWithObjects:@[self.titleInputView.text,self.contentInputView.text,levelValue,self.dueDateInputView.text,sprintNum] forKeys:@[@"title",@"content",@"level",@"endDate",@"sprintNum"]];
+        NSDictionary *eventData = [NSDictionary dictionaryWithObjects:@[self.titleInputView.text,self.contentInputView.text,levelValue,self.dueDateInputView.text,sprintNum,self.pointInputView.text] forKeys:@[@"title",@"content",@"level",@"endDate",@"sprintNum",@"points"]];
         
         // this method will return a boolean value, decide whether to save draft or not
         [SAEvent createEvents:eventData];
